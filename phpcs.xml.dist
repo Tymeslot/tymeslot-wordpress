@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<ruleset name="Tymeslot WordPress Plugin">
+	<description>Coding standards for the Tymeslot WordPress plugin.</description>
+
+	<file>.</file>
+
+	<!-- Ignore build artefacts and dependencies. -->
+	<exclude-pattern>/build/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<!-- WordPress coding standards. -->
+	<rule ref="WordPress-Extra"/>
+	<rule ref="WordPress-Docs"/>
+
+	<!-- Minimum supported versions. -->
+	<config name="minimum_wp_version" value="6.4"/>
+	<config name="testVersion" value="7.4-"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Text domain enforcement. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="tymeslot"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Prefix enforcement for globals. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="tymeslot"/>
+				<element value="Tymeslot"/>
+				<element value="TYMESLOT"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

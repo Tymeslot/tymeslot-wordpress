@@ -1,0 +1,27 @@
+{
+  "name": "tymeslot-wordpress",
+  "version": "1.0.0",
+  "description": "Official Tymeslot booking & scheduling plugin for WordPress — shortcode, Gutenberg block, and embed generator.",
+  "author": "Tymeslot",
+  "license": "GPL-2.0-or-later",
+  "private": true,
+  "keywords": [
+    "wordpress",
+    "gutenberg",
+    "booking",
+    "scheduling",
+    "tymeslot"
+  ],
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js",
+    "lint:css": "wp-scripts lint-style",
+    "format": "wp-scripts format",
+    "packages-update": "wp-scripts packages-update",
+    "env": "wp-env"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^27.9.0"
+  }
+}

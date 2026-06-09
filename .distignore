@@ -1,0 +1,30 @@
+# Files excluded from the distributed plugin (zip / wordpress.org SVN trunk).
+# The plugin ships only runtime code + compiled build/ + readme.txt + assets.
+
+# Development docs & meta
+CLAUDE.md
+README.md
+CHANGELOG.md
+.editorconfig
+.gitignore
+.distignore
+
+# Block source (only the compiled build/ ships)
+src/
+node_modules/
+package.json
+package-lock.json
+
+# PHP tooling
+composer.json
+composer.lock
+composer.phar
+phpcs.xml.dist
+vendor/
+
+# Listing assets live outside the plugin payload on wordpress.org
+.wordpress-org/
+
+# VCS
+.git/
+.github/

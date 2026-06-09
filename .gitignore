@@ -1,0 +1,20 @@
+# Dependencies
+/node_modules/
+/vendor/
+/composer.phar
+/composer-setup.php
+/composer.lock
+/package-lock.json
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+
+# Build artefacts we DO want committed live in /build — do not ignore them.
+# (The plugin must install and run without a build step.)
+
+# Local WordPress test env
+.wp-env.override.json
