@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="flowA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="flowB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="flowC" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2dd4bf;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Simplified flowing slots for small size - transparent background -->
+  
+  <!-- Top flow -->
+  <path d="M 8 10 L 20 10 Q 23 10 23 13 L 23 14 Q 23 17 20 17 L 13 17 Q 11 17 11 15 L 11 12 Q 11 10 13 10 Z" 
+        fill="url(#flowA)"/>
+  
+  <!-- Middle flow -->
+  <path d="M 12 18 Q 10 18 10 20 L 10 21 Q 10 23 12 23 L 19 23 Q 22 23 22 20 L 22 19 Q 22 17 19 17 Z" 
+        fill="url(#flowB)"/>
+  
+  <!-- Bottom flow -->
+  <path d="M 18 24 Q 22 24 22 27 Q 22 29 19 29 L 10 29 Q 7 29 7 27 Q 7 24 10 24 Z" 
+        fill="url(#flowC)"/>
+  
+  <!-- Center point -->
+  <circle cx="16" cy="19" r="2" fill="url(#flowB)"/>
+</svg>

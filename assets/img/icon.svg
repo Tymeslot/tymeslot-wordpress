@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="primaryFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="secondaryFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2dd4bf;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Top section flowing right with rounded ends -->
+  <path d="M 60 60 L 125 60 Q 138 60 138 73 L 138 77 Q 138 90 125 90 L 85 90 Q 75 90 75 80 L 75 70 Q 75 60 85 60 Z" 
+        fill="url(#primaryFlow)"/>
+  
+  <!-- Middle transition with smooth curves -->
+  <path d="M 80 95 Q 68 95 68 107 L 68 113 Q 68 125 80 125 L 115 125 Q 128 125 128 112 L 128 108 Q 128 95 115 95 Z" 
+        fill="url(#secondaryFlow)"/>
+  
+  <!-- Bottom section flowing right with rounded ends -->
+  <path d="M 115 130 Q 128 130 128 143 L 128 147 Q 128 160 115 160 L 65 160 Q 52 160 52 147 L 52 143 Q 52 130 65 130 Z" 
+        fill="url(#accentFlow)"/>
+  
+  <!-- Central convergence point - using gradient instead of white -->
+  <circle cx="100" cy="110" r="10" fill="url(#secondaryFlow)" opacity="0.3"/>
+  <circle cx="100" cy="110" r="6" fill="url(#secondaryFlow)"/>
+  
+  <!-- Subtle connecting elements showing flow -->
+  <circle cx="85" cy="90" r="3" fill="url(#secondaryFlow)" opacity="0.4"/>
+  <circle cx="115" cy="125" r="3" fill="url(#accentFlow)" opacity="0.4"/>
+</svg>
