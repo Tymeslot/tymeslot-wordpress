@@ -1,0 +1,12 @@
+/**
+ * Front-end styles shared by editor and published page.
+ *
+ * The embed runtime (embed.js) styles the widget itself; this only governs
+ * the block wrapper so theme spacing/alignment behave predictably.
+ */
+.wp-block-tymeslot-booking {
+	&.alignwide,
+	&.alignfull {
+		width: 100%;
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "tymeslot/booking",
+	"version": "1.0.0",
+	"title": "Tymeslot Booking",
+	"category": "embed",
+	"icon": "calendar-alt",
+	"description": "Embed your Tymeslot booking page — inline, as a popup button, a floating button, or a simple link.",
+	"keywords": [ "booking", "scheduling", "appointment", "calendar", "tymeslot" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"attributes": {
+		"username": { "type": "string", "default": "" },
+		"mode": { "type": "string", "default": "inline" },
+		"theme": { "type": "string", "default": "" },
+		"primaryColor": { "type": "string", "default": "" },
+		"locale": { "type": "string", "default": "" },
+		"layout": { "type": "string", "default": "" },
+		"initialHeight": { "type": "number" },
+		"maxWidth": { "type": "number" },
+		"buttonLabel": { "type": "string", "default": "" }
+	},
+	"textdomain": "tymeslot",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
