@@ -1,0 +1,390 @@
+/**
+ * Tymeslot admin styling. Scoped to .tymeslot-admin so it never bleeds
+ * into the rest of wp-admin. Brand tokens mirror Tymeslot Core.
+ */
+.tymeslot-admin {
+	--ts-turquoise: #14b8a6;
+	--ts-turquoise-600: #0d9488;
+	--ts-turquoise-700: #0f766e;
+	--ts-cyan: #06b6d4;
+	--ts-ink: #18181b;
+	--ts-muted: #52525b;
+	--ts-line: #e4e4e7;
+	--ts-bg-soft: #f0fdfa;
+	--ts-radius: 14px;
+
+	max-width: 1120px;
+	margin: 16px 20px 40px 2px;
+	color: var(--ts-ink);
+}
+
+/* Header ----------------------------------------------------------------- */
+.tymeslot-admin__header {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 24px 28px;
+	border-radius: var(--ts-radius);
+	background:
+		radial-gradient( 120% 140% at 0% 0%, rgba( 20, 184, 166, 0.12 ), transparent 60% ),
+		linear-gradient( 135deg, #ffffff, #f8fafc );
+	border: 1px solid var(--ts-line);
+}
+
+.tymeslot-admin__logo svg {
+	height: 34px;
+	width: auto;
+	display: block;
+}
+
+.tymeslot-admin__tagline {
+	margin: 0;
+	font-size: 14px;
+	color: var(--ts-muted);
+}
+
+/* Tabs ------------------------------------------------------------------- */
+.tymeslot-admin__tabs.nav-tab-wrapper {
+	margin: 22px 0 18px;
+	border-bottom: 1px solid var(--ts-line);
+}
+
+.tymeslot-admin .nav-tab {
+	font-weight: 600;
+	border-radius: 8px 8px 0 0;
+}
+
+.tymeslot-admin .nav-tab-active,
+.tymeslot-admin .nav-tab-active:focus {
+	color: var(--ts-turquoise-700);
+	border-bottom: 2px solid var(--ts-turquoise);
+	background: #fff;
+}
+
+/* Layout ----------------------------------------------------------------- */
+.tymeslot-grid,
+.tymeslot-generator {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 22px;
+	align-items: start;
+}
+
+@media ( max-width: 960px ) {
+	.tymeslot-grid,
+	.tymeslot-generator {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Cards ------------------------------------------------------------------ */
+.tymeslot-card {
+	background: #fff;
+	border: 1px solid var(--ts-line);
+	border-radius: var(--ts-radius);
+	padding: 24px 26px;
+	box-shadow: 0 1px 2px rgba( 9, 9, 11, 0.04 );
+}
+
+.tymeslot-card h2 {
+	margin-top: 0;
+	font-size: 18px;
+}
+
+.tymeslot-card h3 {
+	font-size: 14px;
+	margin: 18px 0 6px;
+}
+
+.tymeslot-card__lead {
+	color: var(--ts-muted);
+	font-size: 14px;
+	margin-top: 0;
+}
+
+.tymeslot-card--accent {
+	background:
+		linear-gradient( 160deg, var(--ts-bg-soft), #fff 55% );
+	border-color: #99f6e4;
+}
+
+/* Fields ----------------------------------------------------------------- */
+.tymeslot-field {
+	margin: 0 0 16px;
+}
+
+.tymeslot-field > label {
+	display: block;
+	font-weight: 600;
+	font-size: 13px;
+	margin-bottom: 5px;
+}
+
+.tymeslot-field input[type="text"],
+.tymeslot-field input[type="url"],
+.tymeslot-field input[type="number"],
+.tymeslot-field select {
+	width: 100%;
+	max-width: 420px;
+}
+
+.tymeslot-field__hint {
+	margin: 5px 0 0;
+	font-size: 12px;
+	color: var(--ts-muted);
+}
+
+.tymeslot-field--inline {
+	display: flex;
+	gap: 18px;
+}
+
+.tymeslot-field--inline input {
+	width: 120px;
+}
+
+.tymeslot-advanced {
+	margin: 8px 0 12px;
+	padding: 14px 16px;
+	border: 1px dashed var(--ts-line);
+	border-radius: 10px;
+	background: #fafafa;
+}
+
+.tymeslot-advanced summary {
+	cursor: pointer;
+	font-weight: 600;
+}
+
+/* Steps + check result --------------------------------------------------- */
+.tymeslot-steps {
+	margin: 14px 0 18px 18px;
+	font-size: 14px;
+	line-height: 1.7;
+}
+
+.tymeslot-steps code {
+	background: #fff;
+	border: 1px solid var(--ts-line);
+	padding: 1px 6px;
+	border-radius: 5px;
+}
+
+.tymeslot-check-result {
+	margin-top: 16px;
+	padding: 14px 16px;
+	border-radius: 10px;
+	font-size: 14px;
+	border: 1px solid var(--ts-line);
+}
+
+.tymeslot-check-result p {
+	margin: 0 0 8px;
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.tymeslot-check-result__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 13px;
+	font-weight: 700;
+	flex: 0 0 auto;
+}
+
+.tymeslot-check-result.is-pending {
+	background: #fafafa;
+	color: var(--ts-muted);
+}
+
+.tymeslot-check-result.is-ok {
+	background: var(--ts-bg-soft);
+	border-color: #99f6e4;
+}
+
+.tymeslot-check-result.is-ok .tymeslot-check-result__icon {
+	background: var(--ts-turquoise);
+}
+
+.tymeslot-check-result.is-warn {
+	background: #fffbeb;
+	border-color: #fde68a;
+}
+
+.tymeslot-check-result.is-warn .tymeslot-check-result__icon {
+	background: #f59e0b;
+}
+
+.tymeslot-check-result.is-error {
+	background: #fef2f2;
+	border-color: #fecaca;
+}
+
+.tymeslot-check-result.is-error .tymeslot-check-result__icon {
+	background: #ef4444;
+}
+
+/* Generator -------------------------------------------------------------- */
+.tymeslot-modes {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+	margin-bottom: 22px;
+}
+
+.tymeslot-mode {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 14px 16px;
+	border: 1.5px solid var(--ts-line);
+	border-radius: 12px;
+	cursor: pointer;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tymeslot-mode input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.tymeslot-mode.is-active {
+	border-color: var(--ts-turquoise);
+	box-shadow: 0 0 0 3px rgba( 20, 184, 166, 0.12 );
+}
+
+.tymeslot-mode__badge {
+	align-self: flex-start;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--ts-turquoise-700);
+	background: var(--ts-bg-soft);
+	padding: 2px 8px;
+	border-radius: 999px;
+}
+
+.tymeslot-mode__title {
+	font-size: 15px;
+}
+
+.tymeslot-mode__desc {
+	font-size: 12px;
+	color: var(--ts-muted);
+}
+
+.tymeslot-controls {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 14px 20px;
+}
+
+.tymeslot-controls .tymeslot-field {
+	margin: 0;
+}
+
+.tymeslot-controls .tymeslot-field input,
+.tymeslot-controls .tymeslot-field select {
+	max-width: none;
+}
+
+/* Snippet + preview ------------------------------------------------------ */
+.tymeslot-snippet__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.tymeslot-snippet__head h2 {
+	margin: 0;
+}
+
+.tymeslot-snippet__code {
+	margin: 12px 0 0;
+	padding: 14px 16px;
+	background: #0f172a;
+	color: #e2e8f0;
+	border-radius: 10px;
+	overflow-x: auto;
+	font-size: 12.5px;
+	line-height: 1.6;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.tymeslot-snippet__code code {
+	background: none;
+	color: inherit;
+	padding: 0;
+}
+
+.tymeslot-snippet__hint {
+	font-size: 12px;
+	color: var(--ts-muted);
+}
+
+.tymeslot-preview {
+	margin-top: 22px;
+	border-top: 1px solid var(--ts-line);
+	padding-top: 18px;
+}
+
+.tymeslot-preview h3 {
+	margin-top: 0;
+}
+
+.tymeslot-preview__frame {
+	margin-top: 10px;
+	border: 1px solid var(--ts-line);
+	border-radius: 12px;
+	overflow: hidden;
+	background:
+		repeating-conic-gradient( #f8fafc 0% 25%, #fff 0% 50% ) 50% / 22px 22px;
+	min-height: 280px;
+}
+
+.tymeslot-preview__iframe {
+	display: block;
+	width: 100%;
+	height: 520px;
+	border: 0;
+}
+
+/* Lists ------------------------------------------------------------------ */
+.tymeslot-list {
+	margin: 8px 0 18px;
+	font-size: 14px;
+	line-height: 1.8;
+	list-style: disc;
+	padding-left: 20px;
+}
+
+.tymeslot-list code,
+.tymeslot-card p code {
+	background: #f4f4f5;
+	padding: 1px 6px;
+	border-radius: 5px;
+	font-size: 12.5px;
+}
+
+/* Footer ----------------------------------------------------------------- */
+.tymeslot-admin__footer {
+	margin-top: 26px;
+	font-size: 13px;
+	color: var(--ts-muted);
+}
+
+.tymeslot-admin__footer a,
+.tymeslot-admin a {
+	color: var(--ts-turquoise-700);
+}
