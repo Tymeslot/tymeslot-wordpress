@@ -157,17 +157,17 @@ class Tymeslot_Connection {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			$result['status']  = 'unreachable';
+			$result['status'] = 'unreachable';
 			/* translators: %s: error detail. */
 			$result['message'] = sprintf( __( 'Could not reach your Tymeslot instance: %s', 'tymeslot' ), $response->get_error_message() );
 			return $result;
 		}
 
-		$code              = (int) wp_remote_retrieve_response_code( $response );
+		$code                = (int) wp_remote_retrieve_response_code( $response );
 		$result['reachable'] = true;
 
 		if ( 404 === $code ) {
-			$result['status']  = 'account_not_found';
+			$result['status'] = 'account_not_found';
 			/* translators: %s: username. */
 			$result['message'] = sprintf( __( 'The instance is reachable, but no booking page was found for “%s”. Check the username.', 'tymeslot' ), $username );
 			return $result;
@@ -194,8 +194,8 @@ class Tymeslot_Connection {
 			$result['message'] = __( 'All set — your booking page can be embedded on this site.', 'tymeslot' );
 		} else {
 			$result['status']  = 'not_allowlisted';
-			/* translators: %s: this site's host name. */
 			$result['message'] = sprintf(
+				/* translators: %s: this site's host name. */
 				__( 'Your account does not yet allow embedding on “%s”. Add this domain in Tymeslot → Embed → Security, then re-check.', 'tymeslot' ),
 				$site_host
 			);
@@ -326,7 +326,7 @@ class Tymeslot_Connection {
 	private static function hosts_match( $host, $pattern ) {
 		if ( 0 === strpos( $pattern, '*.' ) ) {
 			$suffix = substr( $pattern, 1 ); // ".example.com"
-			return (bool) preg_match( '/' . preg_quote( $suffix, '/' ) . '$/', $host ) && $host !== ltrim( $suffix, '.' );
+			return (bool) preg_match( '/' . preg_quote( $suffix, '/' ) . '$/', $host ) && ltrim( $suffix, '.' ) !== $host;
 		}
 
 		$strip_www = function ( $h ) {

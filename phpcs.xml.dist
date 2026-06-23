@@ -42,4 +42,17 @@
 			</property>
 		</properties>
 	</rule>
+
+	<!--
+		View partials in admin/views are require()'d inside
+		Tymeslot_Admin::render_page(), so their local variables live in method
+		scope, not the global scope. The "unprefixed global" and "WP global
+		override" sniffs are false positives there.
+	-->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+		<exclude-pattern>/admin/views/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.GlobalVariablesOverride.Prohibited">
+		<exclude-pattern>/admin/views/*</exclude-pattern>
+	</rule>
 </ruleset>

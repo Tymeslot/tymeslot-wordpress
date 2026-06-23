@@ -109,14 +109,14 @@ class Tymeslot_Settings {
 	/**
 	 * Read a single setting.
 	 *
-	 * @param string $key     Setting key.
-	 * @param mixed  $default Fallback if unset.
+	 * @param string $key      Setting key.
+	 * @param mixed  $fallback Returned if the key is unset.
 	 * @return mixed
 	 */
-	public static function get( $key, $default = null ) {
+	public static function get( $key, $fallback = null ) {
 		$all = self::all();
 
-		return array_key_exists( $key, $all ) ? $all[ $key ] : $default;
+		return array_key_exists( $key, $all ) ? $all[ $key ] : $fallback;
 	}
 
 	/**
@@ -175,7 +175,7 @@ class Tymeslot_Settings {
 		$out      = array();
 
 		// Instance URL: must be a valid http(s) URL, else fall back to cloud.
-		$url               = isset( $input['instance_url'] ) ? esc_url_raw( trim( (string) $input['instance_url'] ) ) : '';
+		$url                 = isset( $input['instance_url'] ) ? esc_url_raw( trim( (string) $input['instance_url'] ) ) : '';
 		$out['instance_url'] = '' !== $url ? untrailingslashit( $url ) : self::DEFAULT_INSTANCE;
 
 		$out['username']      = self::sanitize_username( isset( $input['username'] ) ? $input['username'] : '' );
@@ -268,23 +268,23 @@ class Tymeslot_Settings {
 	 * Integer clamped to an inclusive range (matches Core: out-of-range or
 	 * non-numeric is treated as unset rather than clamped).
 	 *
-	 * @param mixed    $value   Raw value.
-	 * @param int      $min     Minimum.
-	 * @param int      $max     Maximum.
-	 * @param int|null $default Returned when value is unset/invalid.
+	 * @param mixed    $value    Raw value.
+	 * @param int      $min      Minimum.
+	 * @param int      $max      Maximum.
+	 * @param int|null $fallback Returned when value is unset/invalid.
 	 * @return int|null
 	 */
-	public static function sanitize_int_in_range( $value, $min, $max, $default = null ) {
+	public static function sanitize_int_in_range( $value, $min, $max, $fallback = null ) {
 		if ( '' === $value || null === $value ) {
-			return $default;
+			return $fallback;
 		}
 
 		if ( ! preg_match( '/^-?\d+$/', (string) $value ) ) {
-			return $default;
+			return $fallback;
 		}
 
 		$n = (int) $value;
 
-		return ( $n >= $min && $n <= $max ) ? $n : $default;
+		return ( $n >= $min && $n <= $max ) ? $n : $fallback;
 	}
 }

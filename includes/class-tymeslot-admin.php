@@ -168,26 +168,26 @@ class Tymeslot_Admin {
 	 */
 	public static function svg_kses() {
 		$attrs = array(
-			'xmlns'        => true,
-			'viewbox'      => true,
-			'width'        => true,
-			'height'       => true,
-			'fill'         => true,
-			'd'            => true,
-			'id'           => true,
-			'x1'           => true,
-			'y1'           => true,
-			'x2'           => true,
-			'y2'           => true,
-			'offset'       => true,
-			'stop-color'   => true,
-			'stop-opacity' => true,
-			'style'        => true,
-			'class'        => true,
-			'cx'           => true,
-			'cy'           => true,
-			'r'            => true,
-			'opacity'      => true,
+			'xmlns'         => true,
+			'viewbox'       => true,
+			'width'         => true,
+			'height'        => true,
+			'fill'          => true,
+			'd'             => true,
+			'id'            => true,
+			'x1'            => true,
+			'y1'            => true,
+			'x2'            => true,
+			'y2'            => true,
+			'offset'        => true,
+			'stop-color'    => true,
+			'stop-opacity'  => true,
+			'style'         => true,
+			'class'         => true,
+			'cx'            => true,
+			'cy'            => true,
+			'r'             => true,
+			'opacity'       => true,
 			'gradientunits' => true,
 		);
 
@@ -218,6 +218,7 @@ class Tymeslot_Admin {
 			. '<path d="M 115 130 Q 128 130 128 143 L 128 147 Q 128 160 115 160 L 65 160 Q 52 160 52 147 L 52 143 Q 52 130 65 130 Z"/>'
 			. '</svg>';
 
+		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- Benign: encoding a static inline SVG as a data URI for the admin menu icon.
 		return 'data:image/svg+xml;base64,' . base64_encode( $svg );
 	}
 }

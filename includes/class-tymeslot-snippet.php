@@ -13,6 +13,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// This file's entire job is to produce copyable <script src="…/embed.js">
+// snippet TEXT for users to paste — these are output strings, not scripts the
+// plugin loads, so the enqueue sniff does not apply. The runtime itself is
+// loaded via wp_enqueue_script() in class-tymeslot-assets.php.
+// phpcs:disable WordPress.WP.EnqueuedResources.NonEnqueuedScript
+
 /**
  * Generates inline / popup / floating / link embed snippets.
  */
@@ -313,3 +319,5 @@ class Tymeslot_Snippet {
 		return $value;
 	}
 }
+
+// phpcs:enable WordPress.WP.EnqueuedResources.NonEnqueuedScript
