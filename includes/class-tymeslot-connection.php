@@ -15,108 +15,12 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Performs and exposes the embeddability diagnostic.
+ * Pure embeddability diagnostic. Given an instance URL and username, probes
+ * the booking page and reports whether this site may embed it. No HTTP/REST
+ * coupling — the REST layer (Tymeslot_Rest) calls check() and serialises the
+ * result, which keeps this logic straightforward to test in isolation.
  */
 class Tymeslot_Connection {
-
-	const REST_NAMESPACE = 'tymeslot/v1';
-	const REST_ROUTE     = '/check';
-	const SNIPPET_ROUTE  = '/snippet';
-
-	/**
-	 * Register the REST route used by the Setup tab.
-	 *
-	 * @return void
-	 */
-	public static function register() {
-		add_action( 'rest_api_init', array( __CLASS__, 'register_routes' ) );
-	}
-
-	/**
-	 * Register REST routes.
-	 *
-	 * @return void
-	 */
-	public static function register_routes() {
-		register_rest_route(
-			self::REST_NAMESPACE,
-			self::REST_ROUTE,
-			array(
-				'methods'             => 'POST',
-				'callback'            => array( __CLASS__, 'handle_check' ),
-				'permission_callback' => function () {
-					return current_user_can( 'manage_options' );
-				},
-				'args'                => array(
-					'username'     => array( 'type' => 'string' ),
-					'instance_url' => array( 'type' => 'string' ),
-				),
-			)
-		);
-
-		register_rest_route(
-			self::REST_NAMESPACE,
-			self::SNIPPET_ROUTE,
-			array(
-				'methods'             => 'POST',
-				'callback'            => array( __CLASS__, 'handle_snippet' ),
-				'permission_callback' => function () {
-					return current_user_can( 'manage_options' );
-				},
-			)
-		);
-	}
-
-	/**
-	 * REST handler that regenerates an embed snippet for the live generator.
-	 * Reuses the shared snippet engine so the preview never drifts from the
-	 * markup the shortcode/block actually output.
-	 *
-	 * @param WP_REST_Request $request Request.
-	 * @return WP_REST_Response
-	 */
-	public static function handle_snippet( $request ) {
-		$mode = (string) $request->get_param( 'mode' );
-
-		$snippet = Tymeslot_Snippet::render(
-			$mode,
-			array(
-				'username'       => $request->get_param( 'username' ),
-				'theme'          => $request->get_param( 'theme' ),
-				'primary_color'  => $request->get_param( 'primary_color' ),
-				'locale'         => $request->get_param( 'locale' ),
-				'layout'         => $request->get_param( 'layout' ),
-				'initial_height' => $request->get_param( 'initial_height' ),
-				'max_width'      => $request->get_param( 'max_width' ),
-				'label'          => $request->get_param( 'label' ),
-			)
-		);
-
-		return new WP_REST_Response(
-			array(
-				'mode'    => Tymeslot_Settings::sanitize_mode( $mode ),
-				'snippet' => $snippet,
-			),
-			200
-		);
-	}
-
-	/**
-	 * REST handler — runs the diagnostic with the posted (or saved) values.
-	 *
-	 * @param WP_REST_Request $request Request.
-	 * @return WP_REST_Response
-	 */
-	public static function handle_check( $request ) {
-		$instance = $request->get_param( 'instance_url' );
-		$instance = $instance ? untrailingslashit( esc_url_raw( $instance ) ) : Tymeslot_Settings::instance_url();
-
-		$username = Tymeslot_Settings::sanitize_username(
-			$request->get_param( 'username' ) ? $request->get_param( 'username' ) : Tymeslot_Settings::get( 'username', '' )
-		);
-
-		return new WP_REST_Response( self::check( $instance, $username ), 200 );
-	}
 
 	/**
 	 * Run the diagnostic.

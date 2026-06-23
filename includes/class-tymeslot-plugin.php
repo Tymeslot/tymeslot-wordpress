@@ -49,9 +49,11 @@ final class Tymeslot_Plugin {
 		require_once TYMESLOT_PATH . 'includes/class-tymeslot-settings.php';
 		require_once TYMESLOT_PATH . 'includes/class-tymeslot-snippet.php';
 		require_once TYMESLOT_PATH . 'includes/class-tymeslot-assets.php';
+		require_once TYMESLOT_PATH . 'includes/class-tymeslot-embed.php';
 		require_once TYMESLOT_PATH . 'includes/class-tymeslot-shortcode.php';
 		require_once TYMESLOT_PATH . 'includes/class-tymeslot-block.php';
 		require_once TYMESLOT_PATH . 'includes/class-tymeslot-connection.php';
+		require_once TYMESLOT_PATH . 'includes/class-tymeslot-rest.php';
 
 		if ( is_admin() ) {
 			require_once TYMESLOT_PATH . 'includes/class-tymeslot-admin.php';
@@ -69,7 +71,7 @@ final class Tymeslot_Plugin {
 		add_action( 'init', array( 'Tymeslot_Block', 'register' ) );
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 
-		Tymeslot_Connection::register();
+		Tymeslot_Rest::register();
 
 		if ( is_admin() ) {
 			Tymeslot_Admin::register();

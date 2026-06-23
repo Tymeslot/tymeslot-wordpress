@@ -87,8 +87,8 @@ class Tymeslot_Admin {
 			'tymeslot-admin',
 			'TymeslotAdmin',
 			array(
-				'restCheck'   => esc_url_raw( rest_url( Tymeslot_Connection::REST_NAMESPACE . Tymeslot_Connection::REST_ROUTE ) ),
-				'restSnippet' => esc_url_raw( rest_url( Tymeslot_Connection::REST_NAMESPACE . Tymeslot_Connection::SNIPPET_ROUTE ) ),
+				'restCheck'   => esc_url_raw( rest_url( Tymeslot_Rest::NAMESPACE_V1 . Tymeslot_Rest::CHECK_ROUTE ) ),
+				'restSnippet' => esc_url_raw( rest_url( Tymeslot_Rest::NAMESPACE_V1 . Tymeslot_Rest::SNIPPET_ROUTE ) ),
 				'nonce'       => wp_create_nonce( 'wp_rest' ),
 				'instanceUrl' => Tymeslot_Settings::instance_url(),
 				'embedDocs'   => Tymeslot_Settings::instance_url() . '/docs/embed',

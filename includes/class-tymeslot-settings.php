@@ -22,6 +22,12 @@ class Tymeslot_Settings {
 	const DEFAULT_INSTANCE = 'https://tymeslot.app';
 
 	/**
+	 * Inclusive pixel bounds for height/width inputs (matches Core).
+	 */
+	const MIN_DIMENSION = 200;
+	const MAX_DIMENSION = 2000;
+
+	/**
 	 * Booking themes, mirrored from `lib/tymeslot/themes/catalog.ex`.
 	 *
 	 * @return array<string,string> Map of theme id => label.
@@ -184,8 +190,8 @@ class Tymeslot_Settings {
 		$out['locale']        = self::sanitize_locale( isset( $input['locale'] ) ? $input['locale'] : '' );
 		$out['layout']        = self::sanitize_layout( isset( $input['layout'] ) ? $input['layout'] : 'column' );
 
-		$out['initial_height'] = self::sanitize_int_in_range( isset( $input['initial_height'] ) ? $input['initial_height'] : '', 200, 2000, $defaults['initial_height'] );
-		$out['max_width']      = self::sanitize_int_in_range( isset( $input['max_width'] ) ? $input['max_width'] : '', 200, 2000, $defaults['max_width'] );
+		$out['initial_height'] = self::sanitize_int_in_range( isset( $input['initial_height'] ) ? $input['initial_height'] : '', self::MIN_DIMENSION, self::MAX_DIMENSION, $defaults['initial_height'] );
+		$out['max_width']      = self::sanitize_int_in_range( isset( $input['max_width'] ) ? $input['max_width'] : '', self::MIN_DIMENSION, self::MAX_DIMENSION, $defaults['max_width'] );
 
 		return $out;
 	}

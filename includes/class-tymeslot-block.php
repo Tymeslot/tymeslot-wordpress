@@ -48,9 +48,8 @@ class Tymeslot_Block {
 	public static function render( $attributes ) {
 		$attributes = is_array( $attributes ) ? $attributes : array();
 
-		$mode    = isset( $attributes['mode'] ) ? $attributes['mode'] : 'inline';
-		$snippet = Tymeslot_Snippet::render(
-			$mode,
+		$snippet = Tymeslot_Embed::render(
+			isset( $attributes['mode'] ) ? $attributes['mode'] : 'inline',
 			array(
 				'username'       => isset( $attributes['username'] ) ? $attributes['username'] : '',
 				'theme'          => isset( $attributes['theme'] ) ? $attributes['theme'] : '',
@@ -65,10 +64,6 @@ class Tymeslot_Block {
 
 		if ( '' === $snippet ) {
 			return '';
-		}
-
-		if ( 'link' !== Tymeslot_Settings::sanitize_mode( $mode ) ) {
-			Tymeslot_Assets::enqueue();
 		}
 
 		$wrapper = function_exists( 'get_block_wrapper_attributes' )

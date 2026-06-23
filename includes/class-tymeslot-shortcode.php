@@ -51,9 +51,8 @@ class Tymeslot_Shortcode {
 			self::TAG
 		);
 
-		$mode    = Tymeslot_Settings::sanitize_mode( $atts['mode'] );
-		$snippet = Tymeslot_Snippet::render(
-			$mode,
+		$snippet = Tymeslot_Embed::render(
+			$atts['mode'],
 			array(
 				'username'       => $atts['username'],
 				'theme'          => $atts['theme'],
@@ -68,11 +67,6 @@ class Tymeslot_Shortcode {
 
 		if ( '' === $snippet ) {
 			return self::missing_username_notice();
-		}
-
-		// The direct-link snippet is a plain anchor — no runtime needed.
-		if ( 'link' !== $mode ) {
-			Tymeslot_Assets::enqueue();
 		}
 
 		return $snippet;

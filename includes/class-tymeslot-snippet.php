@@ -85,8 +85,8 @@ class Tymeslot_Snippet {
 			'primary_color'  => Tymeslot_Settings::sanitize_color( self::pick( $args, 'primary_color', Tymeslot_Settings::get( 'primary_color', '' ) ) ),
 			'locale'         => Tymeslot_Settings::sanitize_locale( self::pick( $args, 'locale', Tymeslot_Settings::get( 'locale', '' ) ) ),
 			'layout'         => self::clean_layout( self::pick( $args, 'layout', Tymeslot_Settings::get( 'layout', 'column' ) ) ),
-			'initial_height' => Tymeslot_Settings::sanitize_int_in_range( self::pick( $args, 'initial_height', Tymeslot_Settings::get( 'initial_height', '' ) ), 200, 2000 ),
-			'max_width'      => Tymeslot_Settings::sanitize_int_in_range( self::pick( $args, 'max_width', Tymeslot_Settings::get( 'max_width', '' ) ), 200, 2000 ),
+			'initial_height' => Tymeslot_Settings::sanitize_int_in_range( self::pick( $args, 'initial_height', Tymeslot_Settings::get( 'initial_height', '' ) ), Tymeslot_Settings::MIN_DIMENSION, Tymeslot_Settings::MAX_DIMENSION ),
+			'max_width'      => Tymeslot_Settings::sanitize_int_in_range( self::pick( $args, 'max_width', Tymeslot_Settings::get( 'max_width', '' ) ), Tymeslot_Settings::MIN_DIMENSION, Tymeslot_Settings::MAX_DIMENSION ),
 			'label'          => self::sanitize_label( self::pick( $args, 'label', '' ) ),
 		);
 	}
@@ -111,7 +111,7 @@ class Tymeslot_Snippet {
 		);
 
 		return "<!-- Tymeslot Inline -->\n"
-			. '<div id="tymeslot-booking" data-username="' . $o['username'] . '"' . $attrs . "></div>\n"
+			. '<div id="tymeslot-booking" data-username="' . esc_attr( $o['username'] ) . '"' . $attrs . "></div>\n"
 			. '<script src="' . self::esc_src( $o['base_url'] ) . '/embed.js" async></script>';
 	}
 
@@ -221,7 +221,10 @@ class Tymeslot_Snippet {
 			return '';
 		}
 
-		return ' data-' . $name . '="' . $value . '"';
+		// Values are already validated to a safe character set; esc_attr() is
+		// belt-and-braces for the HTML-attribute context and a no-op for every
+		// valid value, so it never changes the snippet a user copies.
+		return ' data-' . $name . '="' . esc_attr( $value ) . '"';
 	}
 
 	/**
