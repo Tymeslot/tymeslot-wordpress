@@ -50,14 +50,14 @@ Tymeslot is not affiliated with Calendly or Cal.com.
 1. Install and activate the plugin.
 2. Go to **Tymeslot** in the WordPress admin menu.
 3. Enter your Tymeslot **instance URL** (use `https://tymeslot.app` for the cloud, or your own domain if you self-host) and your **booking username**.
-4. **Important:** Tymeslot blocks embedding by default. In your Tymeslot dashboard, open **Embed → Security** and add your WordPress site’s domain to the allowed embed domains. Then use **Test connection** on the Setup tab to confirm it’s working.
+4. **Important:** Tymeslot blocks embedding by default. In your Tymeslot dashboard, open **Embed → Security** and add your WordPress site’s domain to the allowed embed domains. The Setup tab’s live embedding status then confirms, right in the browser, that it’s working.
 5. Add the **Tymeslot Booking** block to a page, or drop in the `[tymeslot]` shortcode.
 
 == Frequently Asked Questions ==
 
 = My booking page shows up blank. What’s wrong? =
 
-Almost always the domain allowlist. For security, Tymeslot only allows your booking page to be embedded on domains you approve. In your Tymeslot dashboard go to **Embed → Security**, add your WordPress site’s domain, and save. The **Test connection** button on the plugin’s Setup tab tells you exactly whether this site is allowed.
+Almost always the domain allowlist. For security, Tymeslot only allows your booking page to be embedded on domains you approve. In your Tymeslot dashboard go to **Embed → Security**, add your WordPress site’s domain, and save. The live embedding status on the plugin’s Setup tab loads your real booking page and tells you, in the browser, exactly whether this site is allowed.
 
 = Do I need a paid Tymeslot account? =
 
@@ -92,7 +92,7 @@ No. The lightweight embed runtime loads only on pages that actually contain a Ty
 * Tymeslot Booking Gutenberg block (inline, popup, floating, link).
 * `[tymeslot]` shortcode.
 * Branded settings screen with an embed generator and live preview.
-* Connection check that detects whether your domain is allow-listed for embedding.
+* Live embedding check that loads your real booking page and shows whether this site is allow-listed.
 * Support for self-hosted Tymeslot instances.
 * Themes (Quill, Rhythm), primary colour, layout, and language options.
 

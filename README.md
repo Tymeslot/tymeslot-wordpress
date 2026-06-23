@@ -12,7 +12,7 @@ Add your Tymeslot booking page to any WordPress site with a **Gutenberg block**,
 - **Gutenberg block** — configure everything from the editor sidebar.
 - **Shortcode** — `[tymeslot username="you" mode="inline"]`.
 - **Embed generator** — a branded settings screen that builds, previews, and copies snippets, mirroring the in-app Tymeslot generator.
-- **Connection check** — detects whether your site’s domain is allow-listed for embedding (Tymeslot blocks embedding by default) and tells you exactly what to fix.
+- **Live embedding check** — a browser-side probe loads your real booking page in the Setup tab and shows, at a glance, whether this site can embed it (Tymeslot blocks embedding by default) and how to fix it if not.
 - **Self-hosting friendly** — point the plugin at any Tymeslot instance.
 - **On-brand & accessible** — booking themes (Quill, Rhythm), accent colour, layout, and language options.
 
@@ -39,7 +39,7 @@ npm run build      # compiles the Gutenberg block into /build (already committed
 
 Copy the folder into `wp-content/plugins/` and activate it, then open **Tymeslot** in the admin menu.
 
-> **Enable embedding:** Tymeslot blocks embedding by default. In your Tymeslot dashboard go to **Embed → Security** and add your WordPress site’s domain, or the booker will render blank. The plugin’s **Test connection** button confirms this for you.
+> **Enable embedding:** Tymeslot blocks embedding by default. In your Tymeslot dashboard go to **Embed → Security** and add your WordPress site’s domain, or the booker will render blank. The Setup tab’s live embedding status confirms this for you.
 
 ## Development
 

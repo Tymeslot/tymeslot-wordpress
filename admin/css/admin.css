@@ -170,64 +170,126 @@
 	border-radius: 5px;
 }
 
-.tymeslot-check-result {
-	margin-top: 16px;
+/* Live embedding status badge + test ------------------------------------ */
+.tymeslot-embed-status {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	margin: 16px 0 14px;
 	padding: 14px 16px;
 	border-radius: 10px;
 	font-size: 14px;
 	border: 1px solid var(--ts-line);
+	background: #fafafa;
+	color: var(--ts-muted);
 }
 
-.tymeslot-check-result p {
-	margin: 0 0 8px;
-	display: flex;
-	align-items: flex-start;
-	gap: 8px;
-}
-
-.tymeslot-check-result__icon {
+.tymeslot-embed-status__icon {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 20px;
-	height: 20px;
+	width: 22px;
+	height: 22px;
 	border-radius: 50%;
 	color: #fff;
 	font-size: 13px;
 	font-weight: 700;
 	flex: 0 0 auto;
+	background: #a1a1aa;
 }
 
-.tymeslot-check-result.is-pending {
-	background: #fafafa;
-	color: var(--ts-muted);
-}
-
-.tymeslot-check-result.is-ok {
+.tymeslot-embed-status.is-ok {
 	background: var(--ts-bg-soft);
 	border-color: #99f6e4;
+	color: var(--ts-turquoise-700);
 }
 
-.tymeslot-check-result.is-ok .tymeslot-check-result__icon {
+.tymeslot-embed-status.is-ok .tymeslot-embed-status__icon {
 	background: var(--ts-turquoise);
 }
 
-.tymeslot-check-result.is-warn {
+.tymeslot-embed-status.is-blocked {
 	background: #fffbeb;
 	border-color: #fde68a;
+	color: #92400e;
 }
 
-.tymeslot-check-result.is-warn .tymeslot-check-result__icon {
+.tymeslot-embed-status.is-blocked .tymeslot-embed-status__icon {
 	background: #f59e0b;
 }
 
-.tymeslot-check-result.is-error {
-	background: #fef2f2;
-	border-color: #fecaca;
+.tymeslot-embed-status.is-config {
+	background: #eff6ff;
+	border-color: #bfdbfe;
+	color: #1e40af;
 }
 
-.tymeslot-check-result.is-error .tymeslot-check-result__icon {
+.tymeslot-embed-status.is-config .tymeslot-embed-status__icon {
+	background: #3b82f6;
+}
+
+.tymeslot-embed-status.is-unreachable {
+	background: #fef2f2;
+	border-color: #fecaca;
+	color: #991b1b;
+}
+
+.tymeslot-embed-status.is-unreachable .tymeslot-embed-status__icon {
 	background: #ef4444;
+}
+
+.tymeslot-embed-status.is-pending .tymeslot-embed-status__icon {
+	animation: tymeslot-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes tymeslot-pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.4; }
+}
+
+.tymeslot-embed-actions {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+	margin: 0 0 12px;
+}
+
+.tymeslot-fix {
+	margin: 0 0 16px;
+	font-size: 13px;
+}
+
+.tymeslot-fix summary {
+	cursor: pointer;
+	color: var(--ts-turquoise-700);
+	font-weight: 600;
+}
+
+.tymeslot-livetest__label {
+	display: block;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ts-muted);
+	margin-bottom: 6px;
+}
+
+.tymeslot-livetest__frame {
+	border: 1px solid var(--ts-line);
+	border-radius: 12px;
+	overflow: hidden;
+	background:
+		repeating-conic-gradient( #f8fafc 0% 25%, #fff 0% 50% ) 50% / 22px 22px;
+	min-height: 260px;
+}
+
+.tymeslot-livetest__iframe {
+	display: block;
+	width: 100%;
+	height: 420px;
+	border: 0;
+	background: transparent;
 }
 
 /* Generator -------------------------------------------------------------- */

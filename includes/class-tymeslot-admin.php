@@ -87,17 +87,16 @@ class Tymeslot_Admin {
 			'tymeslot-admin',
 			'TymeslotAdmin',
 			array(
-				'restCheck'   => esc_url_raw( rest_url( Tymeslot_Rest::NAMESPACE_V1 . Tymeslot_Rest::CHECK_ROUTE ) ),
 				'restSnippet' => esc_url_raw( rest_url( Tymeslot_Rest::NAMESPACE_V1 . Tymeslot_Rest::SNIPPET_ROUTE ) ),
 				'nonce'       => wp_create_nonce( 'wp_rest' ),
 				'instanceUrl' => Tymeslot_Settings::instance_url(),
+				'username'    => Tymeslot_Settings::get( 'username', '' ),
+				'siteHost'    => wp_parse_url( home_url(), PHP_URL_HOST ),
 				'embedDocs'   => Tymeslot_Settings::instance_url() . '/docs/embed',
 				'i18n'        => array(
-					'checking'   => __( 'Checking…', 'tymeslot' ),
-					'copied'     => __( 'Copied!', 'tymeslot' ),
-					'copy'       => __( 'Copy code', 'tymeslot' ),
-					'reqError'   => __( 'The check could not be completed. Please try again.', 'tymeslot' ),
-					'noUsername' => __( 'Set a username first.', 'tymeslot' ),
+					'checking' => __( 'Checking…', 'tymeslot' ),
+					'copied'   => __( 'Copied!', 'tymeslot' ),
+					'copy'     => __( 'Copy code', 'tymeslot' ),
 				),
 			)
 		);

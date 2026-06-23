@@ -52,7 +52,6 @@ final class Tymeslot_Plugin {
 		require_once TYMESLOT_PATH . 'includes/class-tymeslot-embed.php';
 		require_once TYMESLOT_PATH . 'includes/class-tymeslot-shortcode.php';
 		require_once TYMESLOT_PATH . 'includes/class-tymeslot-block.php';
-		require_once TYMESLOT_PATH . 'includes/class-tymeslot-connection.php';
 		require_once TYMESLOT_PATH . 'includes/class-tymeslot-rest.php';
 
 		if ( is_admin() ) {

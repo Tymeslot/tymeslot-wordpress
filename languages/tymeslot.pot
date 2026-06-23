@@ -4,8 +4,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tymeslot — Booking & Scheduling 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/tymeslot/tymeslot\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,16 +28,7 @@ msgstr ""
 msgid "Account default"
 msgstr ""
 
-msgid "Add the domain, save, then run the check below."
-msgstr ""
-
 msgid "Add your booking page to WordPress — no code required."
-msgstr ""
-
-msgid "Add your Tymeslot username to run the check."
-msgstr ""
-
-msgid "All set — your booking page can be embedded on this site."
 msgstr ""
 
 msgid "Almost always the domain allowlist. Tymeslot blocks embedding until you add this site’s domain under Embed → Security in your dashboard. Use “Test connection” on the Setup tab to confirm."
@@ -90,9 +79,6 @@ msgstr ""
 msgid "Copy this site’s domain: %s"
 msgstr ""
 
-msgid "Could not reach your Tymeslot instance: %s"
-msgstr ""
-
 msgid "custom button / link text"
 msgstr ""
 
@@ -123,6 +109,9 @@ msgstr ""
 msgid "Embedding guide"
 msgstr ""
 
+msgid "Embedding status on this site"
+msgstr ""
+
 msgid "Embed generator"
 msgstr ""
 
@@ -133,9 +122,6 @@ msgid "Embed the calendar directly in your page."
 msgstr ""
 
 msgid "Embed type"
-msgstr ""
-
-msgid "Enable embedding on this site"
 msgstr ""
 
 msgid "Floating button"
@@ -150,6 +136,9 @@ msgstr ""
 msgid "Hex colour, e.g. #14b8a6. Leave blank to use the theme default."
 msgstr ""
 
+msgid "How to enable embedding on this domain"
+msgstr ""
+
 msgid "Initial height (px)"
 msgstr ""
 
@@ -157,6 +146,9 @@ msgid "Inline"
 msgstr ""
 
 msgid "In the editor, add the “Tymeslot Booking” block and configure it in the sidebar. Best for most pages."
+msgstr ""
+
+msgid "In your Tymeslot dashboard open %s and add the domain."
 msgstr ""
 
 msgid "Language"
@@ -177,6 +169,9 @@ msgstr ""
 msgid "Live preview"
 msgstr ""
 
+msgid "Live test"
+msgstr ""
+
 msgid "Max width (px)"
 msgstr ""
 
@@ -186,7 +181,7 @@ msgstr ""
 msgid "No trailing slash. Self-hosters: enter your own domain."
 msgstr ""
 
-msgid "Open %s in your Tymeslot dashboard."
+msgid "Open Embed → Security"
 msgstr ""
 
 msgid "or"
@@ -228,6 +223,9 @@ msgstr ""
 msgid "Quill — elegant glassmorphism"
 msgstr ""
 
+msgid "Re-check"
+msgstr ""
+
 msgid "Recommended"
 msgstr ""
 
@@ -240,13 +238,13 @@ msgstr ""
 msgid "Save settings"
 msgstr ""
 
+msgid "Save, then press Re-check."
+msgstr ""
+
 msgid "Schedule a meeting"
 msgstr ""
 
 msgid "Self-hosting Tymeslot?"
-msgstr ""
-
-msgid "Set a username first."
 msgstr ""
 
 msgid "Settings"
@@ -276,12 +274,6 @@ msgstr ""
 msgid "Supported attributes:"
 msgstr ""
 
-msgid "Test connection"
-msgstr ""
-
-msgid "The check could not be completed. Please try again."
-msgstr ""
-
 msgid "The direct link inherits the booking page size."
 msgstr ""
 
@@ -289,12 +281,6 @@ msgid "The handle in your booking page URL."
 msgstr ""
 
 msgid "The handle in your booking URL, e.g. tymeslot.app/your-handle. Blocks and shortcodes inherit this when no username is given."
-msgstr ""
-
-msgid "The instance is reachable, but no booking page was found for “%s”. Check the username."
-msgstr ""
-
-msgid "The instance returned an unexpected response (HTTP %d)."
 msgstr ""
 
 msgid "Theme"
@@ -315,7 +301,7 @@ msgstr ""
 msgid "Tymeslot: add a username to this shortcode (or set a default in Settings → Tymeslot) to show your booking page."
 msgstr ""
 
-msgid "Tymeslot blocks embedding by default. Before your booking page can appear here, add this site’s domain to your account’s allowed embed domains."
+msgid "Tymeslot blocks embedding by default. This live test loads your real booking page from this page, so it shows exactly what your visitors would see."
 msgstr ""
 
 msgid "Tymeslot booking"
@@ -340,9 +326,6 @@ msgid "Use the %s to build and copy a ready-made snippet for any other theme or 
 msgstr ""
 
 msgid "Visitor / account default"
-msgstr ""
-
-msgid "Your account does not yet allow embedding on “%s”. Add this domain in Tymeslot → Embed → Security, then re-check."
 msgstr ""
 
 msgid "your booking handle (defaults to the one saved in Setup)"

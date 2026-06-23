@@ -2,10 +2,12 @@
 /**
  * REST controller — the plugin's admin-only HTTP surface.
  *
- * Owns route registration and request/response handling. The actual work
- * is delegated: embeddability diagnostics to Tymeslot_Connection, snippet
- * generation to Tymeslot_Embed. This keeps the HTTP layer thin and the
- * logic layers free of WP_REST_Request coupling (and easy to unit test).
+ * Owns route registration and request/response handling, delegating snippet
+ * generation to Tymeslot_Embed. Keeping the HTTP layer thin leaves the logic
+ * layers free of WP_REST_Request coupling.
+ *
+ * (Embeddability is detected entirely in the browser — see the live probe in
+ * admin/js/admin.js — so there is deliberately no server-side check route.)
  *
  * @package Tymeslot
  */
@@ -18,7 +20,6 @@ defined( 'ABSPATH' ) || exit;
 class Tymeslot_Rest {
 
 	const NAMESPACE_V1  = 'tymeslot/v1';
-	const CHECK_ROUTE   = '/check';
 	const SNIPPET_ROUTE = '/snippet';
 
 	/**
@@ -49,20 +50,6 @@ class Tymeslot_Rest {
 
 		register_rest_route(
 			self::NAMESPACE_V1,
-			self::CHECK_ROUTE,
-			array(
-				'methods'             => 'POST',
-				'callback'            => array( __CLASS__, 'handle_check' ),
-				'permission_callback' => array( __CLASS__, 'can_manage' ),
-				'args'                => array(
-					'username'     => $string_arg,
-					'instance_url' => $string_arg,
-				),
-			)
-		);
-
-		register_rest_route(
-			self::NAMESPACE_V1,
 			self::SNIPPET_ROUTE,
 			array(
 				'methods'             => 'POST',
@@ -81,22 +68,6 @@ class Tymeslot_Rest {
 				),
 			)
 		);
-	}
-
-	/**
-	 * Run the embeddability diagnostic for the posted (or saved) values.
-	 *
-	 * @param WP_REST_Request $request Request.
-	 * @return WP_REST_Response
-	 */
-	public static function handle_check( $request ) {
-		$instance = self::resolve_instance( $request->get_param( 'instance_url' ) );
-
-		$username = $request->get_param( 'username' );
-		$username = ( null !== $username && '' !== $username ) ? $username : Tymeslot_Settings::get( 'username', '' );
-		$username = Tymeslot_Settings::sanitize_username( $username );
-
-		return new WP_REST_Response( Tymeslot_Connection::check( $instance, $username ), 200 );
 	}
 
 	/**
@@ -129,30 +100,5 @@ class Tymeslot_Rest {
 			),
 			200
 		);
-	}
-
-	/**
-	 * Resolve and validate a posted instance URL, falling back to the saved
-	 * instance. Only http(s) schemes are accepted.
-	 *
-	 * Note: private/localhost hosts are intentionally NOT blocked. Self-
-	 * hosting Tymeslot on an internal network is a first-class use case, and
-	 * this endpoint is already restricted to administrators (who can make
-	 * arbitrary requests by other means), so an SSRF block here would cost
-	 * legitimate users more than it protects.
-	 *
-	 * @param string|null $raw Posted instance_url.
-	 * @return string Sanitised base URL with no trailing slash.
-	 */
-	private static function resolve_instance( $raw ) {
-		$raw = is_string( $raw ) ? trim( $raw ) : '';
-
-		if ( '' === $raw ) {
-			return Tymeslot_Settings::instance_url();
-		}
-
-		$url = esc_url_raw( $raw, array( 'http', 'https' ) );
-
-		return '' !== $url ? untrailingslashit( $url ) : Tymeslot_Settings::instance_url();
 	}
 }

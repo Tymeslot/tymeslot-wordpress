@@ -13,8 +13,8 @@ project adheres to [Semantic Versioning](https://semver.org/).
   `layout`, `height`, `width`, and `label` attributes.
 - Branded admin screen with a Setup tab, a live embed generator (server-rendered
   preview + copy-to-clipboard), and a Help tab.
-- Connection check that inspects the instance’s framing headers and reports
-  whether this site’s domain is allow-listed for embedding.
+- Live embedding check: a browser-side probe loads the real booking page in
+  the Setup tab and reports whether this site’s domain is allow-listed.
 - Support for self-hosted Tymeslot instances via a configurable instance URL.
 - Theme (Quill, Rhythm), primary colour, layout, language, height, and width
   options, with site-wide defaults.

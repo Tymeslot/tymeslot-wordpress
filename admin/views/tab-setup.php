@@ -114,37 +114,60 @@ $layouts = Tymeslot_Settings::layouts();
 	</section>
 
 	<aside class="tymeslot-card tymeslot-card--accent">
-		<h2><?php esc_html_e( 'Enable embedding on this site', 'tymeslot' ); ?></h2>
+		<h2><?php esc_html_e( 'Embedding status on this site', 'tymeslot' ); ?></h2>
 		<p class="tymeslot-card__lead">
-			<?php esc_html_e( 'Tymeslot blocks embedding by default. Before your booking page can appear here, add this site’s domain to your account’s allowed embed domains.', 'tymeslot' ); ?>
+			<?php esc_html_e( 'Tymeslot blocks embedding by default. This live test loads your real booking page from this page, so it shows exactly what your visitors would see.', 'tymeslot' ); ?>
 		</p>
 
-		<ol class="tymeslot-steps">
-			<li>
-				<?php
-				printf(
-					/* translators: %s: site host. */
-					esc_html__( 'Copy this site’s domain: %s', 'tymeslot' ),
-					'<code>' . esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ) . '</code>'
-				);
-				?>
-			</li>
-			<li>
-				<?php
-				printf(
-					/* translators: %s: link to the embed security settings. */
-					wp_kses_post( __( 'Open %s in your Tymeslot dashboard.', 'tymeslot' ) ),
-					'<a href="' . esc_url( Tymeslot_Settings::instance_url() . '/dashboard/embed' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Embed → Security', 'tymeslot' ) . '</a>'
-				);
-				?>
-			</li>
-			<li><?php esc_html_e( 'Add the domain, save, then run the check below.', 'tymeslot' ); ?></li>
-		</ol>
+		<div
+			id="tymeslot-embed-status"
+			class="tymeslot-embed-status is-pending"
+			data-host="<?php echo esc_attr( wp_parse_url( home_url(), PHP_URL_HOST ) ); ?>"
+		>
+			<span class="tymeslot-embed-status__icon" aria-hidden="true"></span>
+			<span class="tymeslot-embed-status__text"><?php esc_html_e( 'Checking…', 'tymeslot' ); ?></span>
+		</div>
 
-		<button type="button" class="button button-primary" id="tymeslot-check-btn">
-			<?php esc_html_e( 'Test connection', 'tymeslot' ); ?>
-		</button>
+		<p class="tymeslot-embed-actions">
+			<button type="button" class="button" id="tymeslot-check-btn">
+				<?php esc_html_e( 'Re-check', 'tymeslot' ); ?>
+			</button>
+			<a
+				href="<?php echo esc_url( Tymeslot_Settings::instance_url() . '/dashboard/embed' ); ?>"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="button"
+			><?php esc_html_e( 'Open Embed → Security', 'tymeslot' ); ?></a>
+		</p>
 
-		<div id="tymeslot-check-result" class="tymeslot-check-result" hidden></div>
+		<details class="tymeslot-fix" id="tymeslot-fix-steps">
+			<summary><?php esc_html_e( 'How to enable embedding on this domain', 'tymeslot' ); ?></summary>
+			<ol class="tymeslot-steps">
+				<li>
+					<?php
+					printf(
+						/* translators: %s: site host. */
+						esc_html__( 'Copy this site’s domain: %s', 'tymeslot' ),
+						'<code>' . esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ) . '</code>'
+					);
+					?>
+				</li>
+				<li>
+					<?php
+					printf(
+						/* translators: %s: link to the embed security settings. */
+						wp_kses_post( __( 'In your Tymeslot dashboard open %s and add the domain.', 'tymeslot' ) ),
+						'<a href="' . esc_url( Tymeslot_Settings::instance_url() . '/dashboard/embed' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Embed → Security', 'tymeslot' ) . '</a>'
+					);
+					?>
+				</li>
+				<li><?php esc_html_e( 'Save, then press Re-check.', 'tymeslot' ); ?></li>
+			</ol>
+		</details>
+
+		<div class="tymeslot-livetest">
+			<span class="tymeslot-livetest__label"><?php esc_html_e( 'Live test', 'tymeslot' ); ?></span>
+			<div id="tymeslot-livetest-frame" class="tymeslot-livetest__frame"></div>
+		</div>
 	</aside>
 </div>
