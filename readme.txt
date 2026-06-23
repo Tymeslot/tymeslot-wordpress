@@ -83,9 +83,7 @@ No. The lightweight embed runtime loads only on pages that actually contain a Ty
 
 1. The Setup tab — connect your Tymeslot account and confirm embedding is enabled for your domain.
 2. The embed generator — choose a mode, customise the look, and copy a ready-made snippet with a live preview.
-3. The Tymeslot Booking block, configured from the editor sidebar.
-4. An inline booking page embedded on the front end.
-5. The floating booking button.
+3. The Tymeslot Booking block in the editor.
 
 == Changelog ==
 

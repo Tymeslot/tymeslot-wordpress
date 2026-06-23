@@ -18,3 +18,7 @@ Thumbs.db
 
 # Local WordPress test env
 .wp-env.override.json
+
+# Local screenshot helpers
+/.shots/
+/.shots*.mjs
