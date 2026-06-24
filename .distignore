@@ -28,3 +28,6 @@ vendor/
 # VCS
 .git/
 .github/
+
+# Local screenshot scratch (already gitignored; excluded here belt-and-braces)
+.shots/
