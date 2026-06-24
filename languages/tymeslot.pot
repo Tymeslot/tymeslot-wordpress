@@ -337,3 +337,18 @@ msgstr ""
 msgid "Your embed code"
 msgstr ""
 
+msgid "Loading booking page…"
+msgstr ""
+
+msgid "Booking is currently unavailable. Please try again shortly."
+msgstr ""
+
+msgid "The booking page could not be loaded."
+msgstr ""
+
+msgid "This site isn’t allowed to embed your Tymeslot booking page yet. In your Tymeslot dashboard, open Embed → Security and add this site’s domain to the allowed embed domains."
+msgstr ""
+
+msgid "Open Embed → Security"
+msgstr ""
+

@@ -59,6 +59,8 @@ Tymeslot is not affiliated with Calendly or Cal.com.
 
 Almost always the domain allowlist. For security, Tymeslot only allows your booking page to be embedded on domains you approve. In your Tymeslot dashboard go to **Embed → Security**, add your WordPress site’s domain, and save. The live embedding status on the plugin’s Setup tab loads your real booking page and tells you, in the browser, exactly whether this site is allowed.
 
+Until the domain is allow-listed, the plugin shows a short “booking is currently unavailable” message in place of the booker — it deliberately never lets the Tymeslot homepage render inside your page. Logged-in administrators also see a hint pointing to **Embed → Security**.
+
 = Do I need a paid Tymeslot account? =
 
 No. Core scheduling on Tymeslot is free, and this plugin works with free and Pro accounts alike.
@@ -93,6 +95,7 @@ No. The lightweight embed runtime loads only on pages that actually contain a Ty
 * `[tymeslot]` shortcode.
 * Branded settings screen with an embed generator and live preview.
 * Live embedding check that loads your real booking page and shows whether this site is allow-listed.
+* Embed guard that shows a clear message instead of the Tymeslot homepage when a booking page can’t be embedded (inline, popup, and floating).
 * Support for self-hosted Tymeslot instances.
 * Themes (Quill, Rhythm), primary colour, layout, and language options.
 

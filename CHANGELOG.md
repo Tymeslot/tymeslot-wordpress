@@ -15,6 +15,11 @@ project adheres to [Semantic Versioning](https://semver.org/).
   preview + copy-to-clipboard), and a Help tab.
 - Live embedding check: a browser-side probe loads the real booking page in
   the Setup tab and reports whether this site’s domain is allow-listed.
+- Embed guard: when a booking page can’t be embedded (the domain isn’t
+  allow-listed), the front end shows a clear message in place of the booker
+  instead of letting the Tymeslot homepage render inside the page — with an
+  actionable hint for logged-in administrators. Covers inline, popup, and
+  floating modes.
 - Support for self-hosted Tymeslot instances via a configurable instance URL.
 - Theme (Quill, Rhythm), primary colour, layout, language, height, and width
   options, with site-wide defaults.
