@@ -1,0 +1,90 @@
+/**
+ * Tymeslot front-end embed guard styles.
+ *
+ * The cover sits over embed.js's iframe wrapper while the booking page is
+ * being confirmed, then is removed on success or turned into a message on
+ * failure. Kept self-contained and theme-neutral so it reads cleanly inside
+ * any WordPress theme.
+ */
+
+.tymeslot-guard-cover {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	box-sizing: border-box;
+	padding: 24px;
+	background: #ffffff;
+	border-radius: inherit;
+	color: #475569;
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	text-align: center;
+	z-index: 2;
+}
+
+.tymeslot-guard-spinner {
+	width: 38px;
+	height: 38px;
+	border: 3px solid #e2e8f0;
+	border-top-color: #14b8a6;
+	border-radius: 50%;
+	animation: tymeslot-guard-spin 1s linear infinite;
+}
+
+@keyframes tymeslot-guard-spin {
+	to {
+		transform: rotate( 360deg );
+	}
+}
+
+.tymeslot-guard-loading {
+	font-size: 14px;
+}
+
+.tymeslot-guard-cover--failed {
+	background: #f8fafc;
+}
+
+.tymeslot-guard-message {
+	max-width: 440px;
+}
+
+.tymeslot-guard-message__text {
+	margin: 0;
+	font-size: 15px;
+	font-weight: 600;
+	color: #334155;
+}
+
+.tymeslot-guard-message__admin {
+	margin-top: 16px;
+	padding-top: 16px;
+	border-top: 1px solid #e2e8f0;
+	font-size: 13px;
+	line-height: 1.5;
+	color: #64748b;
+}
+
+.tymeslot-guard-message__admin p {
+	margin: 0 0 10px;
+}
+
+.tymeslot-guard-message__cta {
+	display: inline-block;
+	padding: 7px 14px;
+	border-radius: 8px;
+	background: #14b8a6;
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.tymeslot-guard-message__cta:hover,
+.tymeslot-guard-message__cta:focus {
+	background: #0d9488;
+	color: #ffffff;
+}
