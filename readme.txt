@@ -39,6 +39,15 @@ Everything is driven by your real Tymeslot booking page, so availability, time z
 2. **Shortcode** — `[tymeslot username="you" mode="inline"]` in any post, page, or widget.
 3. **Embed generator** — build and copy a ready-made snippet from the plugin’s settings screen for any page builder or custom theme.
 
+= Connecting to Tymeslot (third-party service) =
+
+This plugin displays booking pages served by **Tymeslot** — the managed cloud at tymeslot.app, or a Tymeslot instance you host yourself. To show a booker, the visitor’s browser loads your booking page and its `embed.js` from the Tymeslot instance you choose. On the settings screen, an optional connection check loads your booking page in a preview so you can confirm embedding works. The plugin makes no external request until you set a booking username, and it never sends your data anywhere other than the Tymeslot instance you configure.
+
+If you use the managed cloud, your use is subject to Tymeslot’s terms and privacy policy:
+
+* Terms & Conditions: https://tymeslot.app/legal/terms-and-conditions
+* Privacy Policy: https://tymeslot.app/legal/privacy-policy
+
 = An alternative to Calendly and Cal.com =
 
 If you’re looking for an open-source booking and appointment tool you can fully control — a Calendly or Cal.com alternative — Tymeslot is built for exactly that, and this plugin brings it natively into WordPress.
@@ -84,6 +93,10 @@ No. The lightweight embed runtime loads only on pages that actually contain a Ty
 = Does it work with a strict Content-Security-Policy? =
 
 The **inline** embed and the **direct link** work under a strict CSP — they only add a `<div>`/`<a>` plus an external script you already allow via `script-src`. The **popup** and **floating button** modes use a small inline `onclick`/`<script>` to open the booker, so they need `'unsafe-inline'` in your `script-src` (or a matching nonce/hash) to run. If you enforce a strict CSP without `'unsafe-inline'`, prefer the inline or link mode.
+
+= Where is the plugin’s source code? =
+
+Development happens in the open. The full, un-minified source — including the Gutenberg block sources under `src/` and the build tooling — lives at https://github.com/Tymeslot/tymeslot-wordpress. The compiled files under `build/` shipped here are generated from it with `@wordpress/scripts` (`npm run build`).
 
 == Screenshots ==
 
