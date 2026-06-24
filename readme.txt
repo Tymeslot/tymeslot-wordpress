@@ -2,7 +2,7 @@
 Contributors: tymeslot
 Tags: booking, appointments, scheduling, calendar, meetings
 Requires at least: 6.4
-Tested up to: 6.5
+Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPLv2 or later

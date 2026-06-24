@@ -68,21 +68,11 @@ final class Tymeslot_Plugin {
 		add_action( 'init', array( 'Tymeslot_Settings', 'register' ) );
 		add_action( 'init', array( 'Tymeslot_Shortcode', 'register' ) );
 		add_action( 'init', array( 'Tymeslot_Block', 'register' ) );
-		add_action( 'init', array( $this, 'load_textdomain' ) );
 
 		Tymeslot_Rest::register();
 
 		if ( is_admin() ) {
 			Tymeslot_Admin::register();
 		}
-	}
-
-	/**
-	 * Load translations.
-	 *
-	 * @return void
-	 */
-	public function load_textdomain() {
-		load_plugin_textdomain( 'tymeslot', false, dirname( TYMESLOT_BASENAME ) . '/languages' );
 	}
 }
