@@ -13,8 +13,6 @@ import {
 	TextControl,
 	SelectControl,
 	RangeControl,
-	ColorPalette,
-	BaseControl,
 	ExternalLink,
 	Notice,
 } from '@wordpress/components';
@@ -32,7 +30,6 @@ const DATA =
 				locales: [],
 				layouts: [],
 				modes: [],
-				brandColors: [ '#14b8a6', '#06b6d4', '#3b82f6', '#0d9488', '#2dd4bf' ],
 		  };
 
 const optionField = ( choices, includeBlank, blankLabel ) => {
@@ -51,7 +48,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		username,
 		mode,
 		theme,
-		primaryColor,
 		locale,
 		layout,
 		initialHeight,
@@ -68,11 +64,6 @@ export default function Edit( { attributes, setAttributes } ) {
 	const isLink = mode === 'link';
 	const usesButtonLabel = mode === 'popup' || mode === 'floating' || mode === 'link';
 	const usesWidth = mode !== 'link';
-
-	const brandColors = ( DATA.brandColors || [] ).map( ( color ) => ( {
-		name: color,
-		color,
-	} ) );
 
 	return (
 		<div { ...blockProps }>
@@ -137,24 +128,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { locale: value } ) }
 						__nextHasNoMarginBottom
 					/>
-					<BaseControl
-						label={ __( 'Primary colour', 'tymeslot' ) }
-						help={ __(
-							'Overrides the theme accent colour. Leave unset to use the theme default.',
-							'tymeslot'
-						) }
-						__nextHasNoMarginBottom
-					>
-						<ColorPalette
-							colors={ brandColors }
-							value={ primaryColor }
-							onChange={ ( value ) =>
-								setAttributes( { primaryColor: value || '' } )
-							}
-							clearable={ true }
-							enableAlpha={ false }
-						/>
-					</BaseControl>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Size', 'tymeslot' ) } initialOpen={ false }>

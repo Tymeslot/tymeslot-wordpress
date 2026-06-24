@@ -38,10 +38,6 @@
       "type": "string",
       "default": ""
     },
-    "primaryColor": {
-      "type": "string",
-      "default": ""
-    },
     "locale": {
       "type": "string",
       "default": ""

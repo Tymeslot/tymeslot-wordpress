@@ -53,7 +53,6 @@ class Tymeslot_Block {
 			array(
 				'username'       => isset( $attributes['username'] ) ? $attributes['username'] : '',
 				'theme'          => isset( $attributes['theme'] ) ? $attributes['theme'] : '',
-				'primary_color'  => isset( $attributes['primaryColor'] ) ? $attributes['primaryColor'] : '',
 				'locale'         => isset( $attributes['locale'] ) ? $attributes['locale'] : '',
 				'layout'         => isset( $attributes['layout'] ) ? $attributes['layout'] : '',
 				'initial_height' => isset( $attributes['initialHeight'] ) ? $attributes['initialHeight'] : '',
@@ -91,7 +90,6 @@ class Tymeslot_Block {
 				'defaults'    => array(
 					'username'      => Tymeslot_Settings::get( 'username', '' ),
 					'theme'         => Tymeslot_Settings::get( 'theme', '' ),
-					'primaryColor'  => Tymeslot_Settings::get( 'primary_color', '' ),
 					'locale'        => Tymeslot_Settings::get( 'locale', '' ),
 					'layout'        => Tymeslot_Settings::get( 'layout', 'column' ),
 					'initialHeight' => Tymeslot_Settings::get( 'initial_height', 700 ),
@@ -101,7 +99,6 @@ class Tymeslot_Block {
 				'locales'     => self::to_choices( Tymeslot_Settings::locales() ),
 				'layouts'     => self::to_choices( Tymeslot_Settings::layouts() ),
 				'modes'       => self::to_choices( Tymeslot_Settings::modes() ),
-				'brandColors' => array( '#14b8a6', '#06b6d4', '#3b82f6', '#0d9488', '#2dd4bf' ),
 			)
 		);
 	}

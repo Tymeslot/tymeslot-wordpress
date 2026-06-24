@@ -9,7 +9,7 @@ project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Tymeslot Booking Gutenberg block with inline, popup, floating-button, and
   direct-link modes.
-- `[tymeslot]` shortcode with `username`, `mode`, `theme`, `color`, `locale`,
+- `[tymeslot]` shortcode with `username`, `mode`, `theme`, `locale`,
   `layout`, `height`, `width`, and `label` attributes.
 - Branded admin screen with a Setup tab, a live embed generator (server-rendered
   preview + copy-to-clipboard), and a Help tab.
@@ -21,7 +21,7 @@ project adheres to [Semantic Versioning](https://semver.org/).
   actionable hint for logged-in administrators. Covers inline, popup, and
   floating modes.
 - Support for self-hosted Tymeslot instances via a configurable instance URL.
-- Theme (Quill, Rhythm), primary colour, layout, language, height, and width
+- Theme (Quill, Rhythm), layout, language, height, and width
   options, with site-wide defaults.
 - Snippet engine verified byte-identical to the Tymeslot Core dashboard
   generator.

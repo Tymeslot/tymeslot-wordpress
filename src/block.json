@@ -20,7 +20,6 @@
 		"username": { "type": "string", "default": "" },
 		"mode": { "type": "string", "default": "inline" },
 		"theme": { "type": "string", "default": "" },
-		"primaryColor": { "type": "string", "default": "" },
 		"locale": { "type": "string", "default": "" },
 		"layout": { "type": "string", "default": "" },
 		"initialHeight": { "type": "number" },

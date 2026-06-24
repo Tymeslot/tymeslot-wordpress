@@ -90,7 +90,6 @@ class Tymeslot_Settings {
 			'instance_url'   => self::DEFAULT_INSTANCE,
 			'username'       => '',
 			'theme'          => '',
-			'primary_color'  => '',
 			'locale'         => '',
 			'layout'         => 'column',
 			'initial_height' => 700,
@@ -184,11 +183,10 @@ class Tymeslot_Settings {
 		$url                 = isset( $input['instance_url'] ) ? esc_url_raw( trim( (string) $input['instance_url'] ) ) : '';
 		$out['instance_url'] = '' !== $url ? untrailingslashit( $url ) : self::DEFAULT_INSTANCE;
 
-		$out['username']      = self::sanitize_username( isset( $input['username'] ) ? $input['username'] : '' );
-		$out['theme']         = self::sanitize_theme( isset( $input['theme'] ) ? $input['theme'] : '' );
-		$out['primary_color'] = self::sanitize_color( isset( $input['primary_color'] ) ? $input['primary_color'] : '' );
-		$out['locale']        = self::sanitize_locale( isset( $input['locale'] ) ? $input['locale'] : '' );
-		$out['layout']        = self::sanitize_layout( isset( $input['layout'] ) ? $input['layout'] : 'column' );
+		$out['username'] = self::sanitize_username( isset( $input['username'] ) ? $input['username'] : '' );
+		$out['theme']    = self::sanitize_theme( isset( $input['theme'] ) ? $input['theme'] : '' );
+		$out['locale']   = self::sanitize_locale( isset( $input['locale'] ) ? $input['locale'] : '' );
+		$out['layout']   = self::sanitize_layout( isset( $input['layout'] ) ? $input['layout'] : 'column' );
 
 		$out['initial_height'] = self::sanitize_int_in_range( isset( $input['initial_height'] ) ? $input['initial_height'] : '', self::MIN_DIMENSION, self::MAX_DIMENSION, $defaults['initial_height'] );
 		$out['max_width']      = self::sanitize_int_in_range( isset( $input['max_width'] ) ? $input['max_width'] : '', self::MIN_DIMENSION, self::MAX_DIMENSION, $defaults['max_width'] );
@@ -220,18 +218,6 @@ class Tymeslot_Settings {
 		$value = trim( (string) $value );
 
 		return preg_match( '/^\d+$/', $value ) ? $value : '';
-	}
-
-	/**
-	 * Hex colour `#RGB` or `#RRGGBB` (matches Core).
-	 *
-	 * @param mixed $value Raw colour.
-	 * @return string Empty string if invalid.
-	 */
-	public static function sanitize_color( $value ) {
-		$value = trim( (string) $value );
-
-		return preg_match( '/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $value ) ? $value : '';
 	}
 
 	/**

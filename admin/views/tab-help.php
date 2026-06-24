@@ -27,7 +27,6 @@ $docs = Tymeslot_Settings::instance_url() . '/docs/embed';
 			<li><code>username</code> — <?php esc_html_e( 'your booking handle (defaults to the one saved in Setup)', 'tymeslot' ); ?></li>
 			<li><code>mode</code> — <code>inline</code>, <code>popup</code>, <code>floating</code>, <?php esc_html_e( 'or', 'tymeslot' ); ?> <code>link</code></li>
 			<li><code>theme</code> — <code>1</code> (Quill) <?php esc_html_e( 'or', 'tymeslot' ); ?> <code>2</code> (Rhythm)</li>
-			<li><code>color</code> — <?php esc_html_e( 'hex accent colour, e.g.', 'tymeslot' ); ?> <code>#14b8a6</code></li>
 			<li><code>locale</code> — <code>en</code>, <code>de</code>, <code>uk</code>, <code>fr</code>, <code>it</code></li>
 			<li><code>layout</code> — <code>column</code> <?php esc_html_e( 'or', 'tymeslot' ); ?> <code>default</code></li>
 			<li><code>height</code>, <code>width</code> — <?php esc_html_e( 'pixels (200–2000)', 'tymeslot' ); ?></li>

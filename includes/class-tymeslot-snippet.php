@@ -82,7 +82,6 @@ class Tymeslot_Snippet {
 			'base_url'       => $base,
 			'booking_url'    => '' !== $username ? $base . '/' . $username : '',
 			'theme'          => Tymeslot_Settings::sanitize_theme( self::pick( $args, 'theme', Tymeslot_Settings::get( 'theme', '' ) ) ),
-			'primary_color'  => Tymeslot_Settings::sanitize_color( self::pick( $args, 'primary_color', Tymeslot_Settings::get( 'primary_color', '' ) ) ),
 			'locale'         => Tymeslot_Settings::sanitize_locale( self::pick( $args, 'locale', Tymeslot_Settings::get( 'locale', '' ) ) ),
 			'layout'         => self::clean_layout( self::pick( $args, 'layout', Tymeslot_Settings::get( 'layout', 'column' ) ) ),
 			'initial_height' => Tymeslot_Settings::sanitize_int_in_range( self::pick( $args, 'initial_height', Tymeslot_Settings::get( 'initial_height', '' ) ), Tymeslot_Settings::MIN_DIMENSION, Tymeslot_Settings::MAX_DIMENSION ),
@@ -103,7 +102,6 @@ class Tymeslot_Snippet {
 			array(
 				self::data_attr( 'locale', $o['locale'] ),
 				self::data_attr( 'theme', $o['theme'] ),
-				self::data_attr( 'primary-color', $o['primary_color'] ),
 				self::data_attr( 'layout', self::layout_override( $o['layout'] ) ),
 				self::data_attr( 'initial-height', self::int_str( $o['initial_height'] ) ),
 				self::data_attr( 'max-width', self::int_str( $o['max_width'] ) ),
@@ -125,6 +123,13 @@ class Tymeslot_Snippet {
 		$js_options = self::build_js_options( $o );
 		$label      = '' !== $o['label'] ? $o['label'] : self::DEFAULT_BUTTON_LABEL;
 
+		// SECURITY INVARIANT: $o['username'] is interpolated raw into an inline JS
+		// string literal (no esc_js / quoting), kept byte-identical to Core's
+		// generator. This is XSS-safe ONLY because Settings::sanitize_username()
+		// constrains the value to ^[a-z0-9][a-z0-9_-]{0,59}$ — no quote, angle
+		// bracket or backslash can reach here. If Core's username format is ever
+		// loosened to allow ' " < or \, this becomes a stored-XSS vector and the
+		// value must be wrapped in esc_js(). The same invariant guards floating().
 		return "<!-- Tymeslot Popup -->\n"
 			. '<button onclick="if(window.TymeslotBooking){TymeslotBooking.open(\'' . $o['username'] . '\'' . $js_options . ")}else{alert('Booking system is currently unavailable.')}\">"
 			. esc_html( $label ) . "</button>\n"
@@ -141,6 +146,10 @@ class Tymeslot_Snippet {
 		$js_options = self::build_js_options( $o );
 		$src        = self::esc_src( $o['base_url'] );
 
+		// SECURITY INVARIANT: see popup() — $o['username'] is interpolated raw
+		// into inline JS and is XSS-safe only while sanitize_username() forbids
+		// quotes, angle brackets and backslashes. Wrap in esc_js() if that ever
+		// changes.
 		return "<!-- Tymeslot Floating Button -->\n"
 			. '<script src="' . $src . "/embed.js\" async></script>\n"
 			. "<script>\n"
@@ -174,24 +183,22 @@ class Tymeslot_Snippet {
 	 * Build the JS options object passed as the 2nd argument to
 	 * `TymeslotBooking.open` / `initFloating`.
 	 *
-	 * Key order is fixed to match the Core map's runtime enumeration order
-	 * on the booking server (verified byte-for-byte against the live
-	 * dashboard generator: layout, locale, theme, primaryColor, maxWidth).
-	 * The order is cosmetic — embed.js reads a plain JS object — so a future
-	 * Erlang/OTP map-ordering change would only affect snippet whitespace,
-	 * never behaviour. Empty values are dropped; `maxWidth` is numeric
-	 * (unquoted), the rest are single-quoted strings. Returns '' when empty.
+	 * Key order matches the Core map's runtime enumeration order on the
+	 * booking server (layout, locale, theme, maxWidth). The order is cosmetic
+	 * — embed.js reads a plain JS object — so a future Erlang/OTP map-ordering
+	 * change would only affect snippet whitespace, never behaviour. Empty
+	 * values are dropped; `maxWidth` is numeric (unquoted), the rest are
+	 * single-quoted strings. Returns '' when empty.
 	 *
 	 * @param array<string,mixed> $o Normalised options.
 	 * @return string
 	 */
 	private static function build_js_options( $o ) {
 		$pairs = array(
-			'layout'       => self::quote_str( self::layout_override( $o['layout'] ) ),
-			'locale'       => self::quote_str( $o['locale'] ),
-			'theme'        => self::quote_str( $o['theme'] ),
-			'primaryColor' => self::quote_str( $o['primary_color'] ),
-			'maxWidth'     => self::int_str( $o['max_width'] ),
+			'layout'   => self::quote_str( self::layout_override( $o['layout'] ) ),
+			'locale'   => self::quote_str( $o['locale'] ),
+			'theme'    => self::quote_str( $o['theme'] ),
+			'maxWidth' => self::int_str( $o['max_width'] ),
 		);
 
 		$parts = array();

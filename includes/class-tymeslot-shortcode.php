@@ -11,9 +11,8 @@ defined( 'ABSPATH' ) || exit;
  * Renders a booking embed from shortcode attributes.
  *
  * Example:
- *   [tymeslot username="sarah" mode="popup" theme="2" color="#14b8a6"
- *             locale="de" layout="column" height="700" width="1000"
- *             label="Book a call"]
+ *   [tymeslot username="sarah" mode="popup" theme="2" locale="de"
+ *             layout="column" height="700" width="1000" label="Book a call"]
  */
 class Tymeslot_Shortcode {
 
@@ -40,7 +39,6 @@ class Tymeslot_Shortcode {
 				'username' => '',
 				'mode'     => 'inline',
 				'theme'    => '',
-				'color'    => '',
 				'locale'   => '',
 				'layout'   => '',
 				'height'   => '',
@@ -56,7 +54,6 @@ class Tymeslot_Shortcode {
 			array(
 				'username'       => $atts['username'],
 				'theme'          => $atts['theme'],
-				'primary_color'  => $atts['color'],
 				'locale'         => $atts['locale'],
 				'layout'         => $atts['layout'],
 				'initial_height' => $atts['height'],

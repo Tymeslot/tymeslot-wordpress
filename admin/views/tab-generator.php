@@ -80,11 +80,6 @@ $mode_meta = array(
 				</select>
 			</div>
 
-			<div class="tymeslot-field">
-				<label for="tymeslot-gen-color"><?php esc_html_e( 'Primary colour', 'tymeslot' ); ?></label>
-				<input type="text" id="tymeslot-gen-color" value="<?php echo esc_attr( $settings['primary_color'] ); ?>" placeholder="#14b8a6" />
-			</div>
-
 			<div class="tymeslot-field" data-mode-only="inline">
 				<label for="tymeslot-gen-height"><?php esc_html_e( 'Initial height (px)', 'tymeslot' ); ?></label>
 				<input type="number" id="tymeslot-gen-height" min="200" max="2000" value="<?php echo esc_attr( $settings['initial_height'] ); ?>" />

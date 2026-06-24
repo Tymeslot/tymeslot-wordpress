@@ -59,7 +59,6 @@ class Tymeslot_Rest {
 					'mode'           => $string_arg,
 					'username'       => $string_arg,
 					'theme'          => $string_arg,
-					'primary_color'  => $string_arg,
 					'locale'         => $string_arg,
 					'layout'         => $string_arg,
 					'initial_height' => $string_arg,
@@ -84,7 +83,6 @@ class Tymeslot_Rest {
 			array(
 				'username'       => $request->get_param( 'username' ),
 				'theme'          => $request->get_param( 'theme' ),
-				'primary_color'  => $request->get_param( 'primary_color' ),
 				'locale'         => $request->get_param( 'locale' ),
 				'layout'         => $request->get_param( 'layout' ),
 				'initial_height' => $request->get_param( 'initial_height' ),
