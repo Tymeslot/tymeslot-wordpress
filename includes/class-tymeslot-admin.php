@@ -75,10 +75,20 @@ class Tymeslot_Admin {
 			TYMESLOT_VERSION
 		);
 
+		// Shared embed-outcome detector — the Setup tab's live embedding
+		// status probe relies on it, exactly as the front-end guard does.
+		wp_enqueue_script(
+			Tymeslot_Assets::DETECT_HANDLE,
+			TYMESLOT_URL . 'assets/js/embed-detect.js',
+			array(),
+			TYMESLOT_VERSION,
+			true
+		);
+
 		wp_enqueue_script(
 			'tymeslot-admin',
 			TYMESLOT_URL . 'admin/js/admin.js',
-			array( 'wp-api-fetch' ),
+			array( 'wp-api-fetch', Tymeslot_Assets::DETECT_HANDLE ),
 			TYMESLOT_VERSION,
 			true
 		);

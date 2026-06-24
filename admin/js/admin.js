@@ -43,15 +43,11 @@
 	 *     (e.g. a Docker network), which would be a misleading false alarm.
 	 *   - No server-side fetch of a user-supplied URL means no SSRF surface.
 	 *
-	 * DEPENDENCY (cross-repo contract):
-	 *   The success signal is the message **type string "tymeslot-resize"**,
-	 *   posted by Tymeslot Core's `assets/js/iframe_embed.js`. This is NOT a
-	 *   private detail — Core's own `embed.js` runtime keys off the same
-	 *   message to size every embed, so it is a stable public protocol. If
-	 *   that message type is ever renamed in Core, update TS_READY_MESSAGE
-	 *   below to match. See the matching note in iframe_embed.js.
+	 * The actual outcome detection (resize confirmation + navigation-away
+	 * rejection) lives in the shared `embed-detect.js` module so the admin
+	 * probe and the front-end guard can never disagree. That module also
+	 * documents the cross-repo "tymeslot-resize" message-type contract.
 	 * ----------------------------------------------------------------- */
-	var TS_READY_MESSAGE = 'tymeslot-resize';
 	var PROBE_TIMEOUT_MS = 9000;
 
 	function initEmbedStatus() {
@@ -144,45 +140,30 @@
 			return;
 		}
 
-		var settled = false;
-		var reachable = false;
-
-		function finish( result ) {
-			if ( settled ) {
-				return;
-			}
-			settled = true;
-			window.clearTimeout( timer );
-			window.removeEventListener( 'message', onMessage );
-			done( result );
+		if ( ! window.TymeslotEmbedDetect ) {
+			// The shared detector should always be enqueued alongside this
+			// script; if it isn't, fail safe rather than report a false 'ok'.
+			done( 'bad_config' );
+			return;
 		}
-
-		// Success: a "tymeslot-resize" message from the instance origin means
-		// the booking page's JS ran inside the frame — i.e. framing succeeded.
-		function onMessage( e ) {
-			if ( e.origin !== origin ) {
-				return;
-			}
-			if ( e.data && typeof e.data === 'object' && e.data.type === TS_READY_MESSAGE ) {
-				finish( 'ok' );
-			}
-		}
-		window.addEventListener( 'message', onMessage );
 
 		// Reachability runs in the browser (works even when the WP server
 		// can't reach the instance). A no-cors fetch resolves when the host
-		// answers and rejects on a connection/DNS failure.
+		// answers and rejects on a connection/DNS failure. Used only to tell
+		// 'unreachable' apart from 'blocked' when nothing renders.
+		var reachable = false;
 		fetch( origin + '/embed.js', { mode: 'no-cors', cache: 'no-store' } )
 			.then( function () {
 				reachable = true;
 			} )
 			.catch( function () {
-				/* leave reachable=false; the timeout reports 'unreachable' */
+				/* leave reachable=false */
 			} );
 
 		// The visible live test = the real booking page. On success the user
-		// sees the booker; when blocked the frame stays empty — a self-
-		// explanatory signal alongside the status badge.
+		// sees the booker; when blocked the booking page redirects away and
+		// the detector reports it — see embed-detect.js for why a single
+		// resize message is not enough to call it 'ok'.
 		if ( frameWrap ) {
 			frameWrap.innerHTML = '';
 		}
@@ -202,9 +183,21 @@
 			document.body.appendChild( iframe );
 		}
 
-		var timer = window.setTimeout( function () {
-			finish( reachable ? 'blocked' : 'unreachable' );
-		}, PROBE_TIMEOUT_MS );
+		window.TymeslotEmbedDetect.watch(
+			iframe,
+			{ origin: origin, settleMs: 1500, timeoutMs: PROBE_TIMEOUT_MS },
+			function ( res ) {
+				if ( 'ok' === res.status ) {
+					done( 'ok' );
+				} else if ( 'blocked' === res.status ) {
+					done( 'blocked' );
+				} else {
+					// Nothing rendered: reachable instance ⇒ blocked/wrong
+					// username; otherwise the instance is unreachable.
+					done( reachable ? 'blocked' : 'unreachable' );
+				}
+			}
+		);
 	}
 
 	/* ----------------------------------------------------------------- *
