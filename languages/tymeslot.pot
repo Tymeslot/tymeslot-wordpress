@@ -1,354 +1,450 @@
 # Copyright (C) 2026 Tymeslot
-# This file is distributed under the GPL-2.0-or-later license.
+# This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Tymeslot — Booking & Scheduling 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/tymeslot/tymeslot\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tymeslot-wordpress\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-23\n"
+"POT-Creation-Date: 2026-06-24T10:50:33+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: tymeslot\n"
 
-msgid "1. Gutenberg block"
+#. Plugin Name of the plugin
+#: tymeslot.php
+msgid "Tymeslot — Booking & Scheduling"
 msgstr ""
 
-msgid "2. Shortcode"
+#. Plugin URI of the plugin
+#: tymeslot.php
+msgid "https://tymeslot.app/docs/wordpress"
 msgstr ""
 
-msgid "3. Embed generator"
+#. Description of the plugin
+#: tymeslot.php
+msgid "Add your Tymeslot booking page to WordPress with a shortcode, a Gutenberg block, or a floating button — no code required. Works with Tymeslot Cloud and self-hosted instances."
 msgstr ""
 
-msgid "A button floats in the corner as visitors scroll."
-msgstr ""
-
-msgid "A button opens the booker in an overlay."
-msgstr ""
-
-msgid "Account default"
-msgstr ""
-
-msgid "Add your booking page to WordPress — no code required."
-msgstr ""
-
-msgid "Almost always the domain allowlist. Tymeslot blocks embedding until you add this site’s domain under Embed → Security in your dashboard. Use “Test connection” on the Setup tab to confirm."
-msgstr ""
-
-msgid "A plain link to your booking page."
-msgstr ""
-
-msgid "Appearance"
-msgstr ""
-
-msgid "Book a Meeting"
-msgstr ""
-
-msgid "Booking"
-msgstr ""
-
-msgid "Button label"
-msgstr ""
-
-msgid "Button & link"
-msgstr ""
-
-msgid "Button / link text"
-msgstr ""
-
-msgid "Checking…"
-msgstr ""
-
-msgid "Choose how to embed"
-msgstr ""
-
-msgid "Column — adapts to any container width"
-msgstr ""
-
-msgid "Column fills the container width; Default is a centred card."
-msgstr ""
-
-msgid "Connect your booking page"
-msgstr ""
-
-msgid "Copied!"
-msgstr ""
-
-msgid "Copy code"
-msgstr ""
-
-msgid "Copy this site’s domain: %s"
-msgstr ""
-
-msgid "custom button / link text"
-msgstr ""
-
-msgid "Default"
-msgstr ""
-
-msgid "Default appearance (optional)"
-msgstr ""
-
-msgid "Default booking username"
-msgstr ""
-
-msgid "Default — centred, self-contained card"
-msgstr ""
-
-msgid "Direct link"
-msgstr ""
-
-msgid "Display as"
-msgstr ""
-
-msgid "documentation"
-msgstr ""
-
-msgid "Easiest"
-msgstr ""
-
-msgid "Embedding guide"
-msgstr ""
-
-msgid "Embedding status on this site"
-msgstr ""
-
-msgid "Embed generator"
-msgstr ""
-
-msgid "Embed → Security"
-msgstr ""
-
-msgid "Embed the calendar directly in your page."
-msgstr ""
-
-msgid "Embed type"
-msgstr ""
-
-msgid "Floating button"
-msgstr ""
-
-msgid "Help"
-msgstr ""
-
-msgid "hex accent colour, e.g."
-msgstr ""
-
-msgid "Hex colour, e.g. #14b8a6. Leave blank to use the theme default."
-msgstr ""
-
-msgid "How to enable embedding on this domain"
-msgstr ""
-
-msgid "Initial height (px)"
-msgstr ""
-
-msgid "Inline"
-msgstr ""
-
-msgid "In the editor, add the “Tymeslot Booking” block and configure it in the sidebar. Best for most pages."
-msgstr ""
-
-msgid "In your Tymeslot dashboard open %s and add the domain."
-msgstr ""
-
-msgid "Language"
-msgstr ""
-
-msgid "Layout"
-msgstr ""
-
-msgid "Leave blank to use the site default."
-msgstr ""
-
-msgid "Links"
-msgstr ""
-
-msgid "Link text"
-msgstr ""
-
-msgid "Live preview"
-msgstr ""
-
-msgid "Live test"
-msgstr ""
-
-msgid "Max width (px)"
-msgstr ""
-
-msgid "My booking page is blank"
-msgstr ""
-
-msgid "No trailing slash. Self-hosters: enter your own domain."
-msgstr ""
-
-msgid "Open Embed → Security"
-msgstr ""
-
-msgid "or"
-msgstr ""
-
-msgid "Overrides the theme accent colour. Leave unset to use the theme default."
-msgstr ""
-
-msgid "Paste a shortcode into any post, page, or widget:"
-msgstr ""
-
-msgid "pixels (200–2000)"
-msgstr ""
-
-msgid "Placeholder height before the widget auto-resizes."
-msgstr ""
-
-msgid "Plugin settings"
-msgstr ""
-
-msgid "Point the plugin at your Tymeslot account. Use the cloud at tymeslot.app, or your own self-hosted instance."
-msgstr ""
-
-msgid "Popular"
-msgstr ""
-
-msgid "Popup"
-msgstr ""
-
-msgid "Prefer no code? Insert the “Tymeslot Booking” block, or use the [tymeslot] shortcode — both produce this same embed."
-msgstr ""
-
-msgid "Primary colour"
-msgstr ""
-
-msgid "Pro"
-msgstr ""
-
-msgid "Quill — elegant glassmorphism"
-msgstr ""
-
-msgid "Re-check"
-msgstr ""
-
-msgid "Recommended"
-msgstr ""
-
-msgid "Renders your real booking page. If it stays blank, this site’s domain is not yet allow-listed — see the Setup tab."
-msgstr ""
-
-msgid "Rhythm — immersive video background"
-msgstr ""
-
-msgid "Save settings"
-msgstr ""
-
-msgid "Save, then press Re-check."
-msgstr ""
-
-msgid "Schedule a meeting"
-msgstr ""
-
-msgid "Self-hosting Tymeslot?"
-msgstr ""
-
-msgid "Settings"
-msgstr ""
-
-msgid "Setup"
-msgstr ""
-
-msgid "Set your own instance URL on the Setup tab. Everything else works the same."
-msgstr ""
-
-msgid "Set your Tymeslot username in the block settings to display your booking page."
-msgstr ""
-
-msgid "Size"
-msgstr ""
-
-msgid "source on GitHub"
-msgstr ""
-
-msgid "Source on GitHub"
-msgstr ""
-
-msgid "<strong>Tymeslot</strong> is almost ready — <a href=\"%s\">add your booking username</a> to start embedding your scheduling page."
-msgstr ""
-
-msgid "Supported attributes:"
-msgstr ""
-
-msgid "The direct link inherits the booking page size."
-msgstr ""
-
-msgid "The handle in your booking page URL."
-msgstr ""
-
-msgid "The handle in your booking URL, e.g. tymeslot.app/your-handle. Blocks and shortcodes inherit this when no username is given."
-msgstr ""
-
-msgid "Theme"
-msgstr ""
-
-msgid "These defaults pre-fill every new block and shortcode. You can override them per embed."
-msgstr ""
-
-msgid "Three ways to embed"
-msgstr ""
-
-msgid "Troubleshooting"
-msgstr ""
-
+#. Author of the plugin
+#: tymeslot.php
+#: includes/class-tymeslot-admin.php:36
+#: includes/class-tymeslot-admin.php:37
 msgid "Tymeslot"
 msgstr ""
 
-msgid "Tymeslot: add a username to this shortcode (or set a default in Settings → Tymeslot) to show your booking page."
+#. Author URI of the plugin
+#: tymeslot.php
+msgid "https://tymeslot.app"
 msgstr ""
 
-msgid "Tymeslot blocks embedding by default. This live test loads your real booking page from this page, so it shows exactly what your visitors would see."
+#: admin/views/page.php:30
+msgid "Add your booking page to WordPress — no code required."
 msgstr ""
 
-msgid "Tymeslot booking"
-msgstr ""
-
-msgid "Tymeslot home"
-msgstr ""
-
-msgid "Tymeslot instance URL"
-msgstr ""
-
+#. translators: 1: docs link, 2: GitHub link.
+#: admin/views/page.php:55
+#, php-format
 msgid "Tymeslot is open source. Read the %1$s or view the %2$s."
 msgstr ""
 
-msgid "Tymeslot username"
+#: admin/views/page.php:56
+msgid "documentation"
 msgstr ""
 
+#: admin/views/page.php:57
+msgid "source on GitHub"
+msgstr ""
+
+#: admin/views/tab-generator.php:19
+msgid "Embed the calendar directly in your page."
+msgstr ""
+
+#: admin/views/tab-generator.php:19
+msgid "Recommended"
+msgstr ""
+
+#: admin/views/tab-generator.php:20
+msgid "A button opens the booker in an overlay."
+msgstr ""
+
+#: admin/views/tab-generator.php:20
+msgid "Popular"
+msgstr ""
+
+#: admin/views/tab-generator.php:21
+msgid "A button floats in the corner as visitors scroll."
+msgstr ""
+
+#: admin/views/tab-generator.php:21
+msgid "Pro"
+msgstr ""
+
+#: admin/views/tab-generator.php:22
+msgid "A plain link to your booking page."
+msgstr ""
+
+#: admin/views/tab-generator.php:22
+msgid "Easiest"
+msgstr ""
+
+#: admin/views/tab-generator.php:28
+msgid "Choose how to embed"
+msgstr ""
+
+#: admin/views/tab-generator.php:30
+msgid "Embed type"
+msgstr ""
+
+#: admin/views/tab-generator.php:50
 msgid "Username"
 msgstr ""
 
-msgid "Use the %s to build and copy a ready-made snippet for any other theme or page builder."
+#: admin/views/tab-generator.php:55
+#: admin/views/tab-setup.php:81
+msgid "Theme"
 msgstr ""
 
-msgid "Visitor / account default"
+#: admin/views/tab-generator.php:57
+#: admin/views/tab-setup.php:83
+msgid "Account default"
 msgstr ""
 
-msgid "your booking handle (defaults to the one saved in Setup)"
+#: admin/views/tab-generator.php:65
+#: admin/views/tab-setup.php:91
+msgid "Layout"
 msgstr ""
 
-msgid "Your booking page renders here on the published page."
+#: admin/views/tab-generator.php:74
+#: admin/views/tab-setup.php:100
+msgid "Language"
 msgstr ""
 
+#: admin/views/tab-generator.php:76
+#: admin/views/tab-setup.php:37
+msgid "Default"
+msgstr ""
+
+#: admin/views/tab-generator.php:84
+#: admin/views/tab-setup.php:111
+msgid "Initial height (px)"
+msgstr ""
+
+#: admin/views/tab-generator.php:89
+#: admin/views/tab-setup.php:115
+msgid "Max width (px)"
+msgstr ""
+
+#: admin/views/tab-generator.php:94
+msgid "Button / link text"
+msgstr ""
+
+#: admin/views/tab-generator.php:95
+msgid "Book a Meeting"
+msgstr ""
+
+#: admin/views/tab-generator.php:103
 msgid "Your embed code"
 msgstr ""
 
-msgid "Loading booking page…"
+#: admin/views/tab-generator.php:104
+#: admin/views/tab-generator.php:105
+#: includes/class-tymeslot-admin.php:109
+msgid "Copy code"
 msgstr ""
 
-msgid "Booking is currently unavailable. Please try again shortly."
+#: admin/views/tab-generator.php:110
+msgid "Prefer no code? Insert the “Tymeslot Booking” block, or use the [tymeslot] shortcode — both produce this same embed."
 msgstr ""
 
-msgid "The booking page could not be loaded."
+#: admin/views/tab-generator.php:115
+msgid "Live preview"
 msgstr ""
 
-msgid "This site isn’t allowed to embed your Tymeslot booking page yet. In your Tymeslot dashboard, open Embed → Security and add this site’s domain to the allowed embed domains."
+#: admin/views/tab-generator.php:117
+msgid "Renders your real booking page. If it stays blank, this site’s domain is not yet allow-listed — see the Setup tab."
 msgstr ""
 
+#: admin/views/tab-help.php:17
+msgid "Three ways to embed"
+msgstr ""
+
+#: admin/views/tab-help.php:19
+msgid "1. Gutenberg block"
+msgstr ""
+
+#: admin/views/tab-help.php:20
+msgid "In the editor, add the “Tymeslot Booking” block and configure it in the sidebar. Best for most pages."
+msgstr ""
+
+#: admin/views/tab-help.php:22
+msgid "2. Shortcode"
+msgstr ""
+
+#: admin/views/tab-help.php:23
+msgid "Paste a shortcode into any post, page, or widget:"
+msgstr ""
+
+#: admin/views/tab-help.php:25
+msgid "Supported attributes:"
+msgstr ""
+
+#: admin/views/tab-help.php:27
+msgid "your booking handle (defaults to the one saved in Setup)"
+msgstr ""
+
+#: admin/views/tab-help.php:28
+#: admin/views/tab-help.php:29
+#: admin/views/tab-help.php:31
+msgid "or"
+msgstr ""
+
+#: admin/views/tab-help.php:32
+msgid "pixels (200–2000)"
+msgstr ""
+
+#: admin/views/tab-help.php:33
+msgid "custom button / link text"
+msgstr ""
+
+#: admin/views/tab-help.php:36
+msgid "3. Embed generator"
+msgstr ""
+
+#. translators: %s: link to the generator tab.
+#: admin/views/tab-help.php:41
+#, php-format
+msgid "Use the %s to build and copy a ready-made snippet for any other theme or page builder."
+msgstr ""
+
+#: admin/views/tab-help.php:42
+#: includes/class-tymeslot-admin.php:127
+msgid "Embed generator"
+msgstr ""
+
+#: admin/views/tab-help.php:49
+msgid "Troubleshooting"
+msgstr ""
+
+#: admin/views/tab-help.php:50
+msgid "My booking page is blank"
+msgstr ""
+
+#: admin/views/tab-help.php:51
+msgid "Almost always the domain allowlist. Tymeslot blocks embedding until you add this site’s domain under Embed → Security in your dashboard. Use “Test connection” on the Setup tab to confirm."
+msgstr ""
+
+#: admin/views/tab-help.php:53
+msgid "Self-hosting Tymeslot?"
+msgstr ""
+
+#: admin/views/tab-help.php:54
+msgid "Set your own instance URL on the Setup tab. Everything else works the same."
+msgstr ""
+
+#: admin/views/tab-help.php:56
+msgid "Links"
+msgstr ""
+
+#: admin/views/tab-help.php:58
+msgid "Embedding guide"
+msgstr ""
+
+#: admin/views/tab-help.php:59
+msgid "Tymeslot home"
+msgstr ""
+
+#: admin/views/tab-help.php:60
+msgid "Source on GitHub"
+msgstr ""
+
+#: admin/views/tab-setup.php:25
+msgid "Connect your booking page"
+msgstr ""
+
+#: admin/views/tab-setup.php:27
+msgid "Point the plugin at your Tymeslot account. Use the cloud at tymeslot.app, or your own self-hosted instance."
+msgstr ""
+
+#: admin/views/tab-setup.php:34
+msgid "Tymeslot account location"
+msgstr ""
+
+#: admin/views/tab-setup.php:38
+msgid "Cloud"
+msgstr ""
+
+#: admin/views/tab-setup.php:39
+msgid "Hosted at tymeslot.app — nothing to configure."
+msgstr ""
+
+#: admin/views/tab-setup.php:43
+msgid "Custom"
+msgstr ""
+
+#: admin/views/tab-setup.php:44
+msgid "Self-hosted"
+msgstr ""
+
+#: admin/views/tab-setup.php:45
+msgid "Connect to your own Tymeslot instance."
+msgstr ""
+
+#: admin/views/tab-setup.php:51
+msgid "Your instance URL"
+msgstr ""
+
+#: admin/views/tab-setup.php:60
+msgid "No trailing slash, e.g. https://book.example.com."
+msgstr ""
+
+#: admin/views/tab-setup.php:64
+msgid "Default booking username"
+msgstr ""
+
+#: admin/views/tab-setup.php:73
+msgid "The handle in your booking URL, e.g. tymeslot.app/your-handle. Blocks and shortcodes inherit this when no username is given."
+msgstr ""
+
+#: admin/views/tab-setup.php:77
+msgid "Default appearance (optional)"
+msgstr ""
+
+#: admin/views/tab-setup.php:78
+msgid "These defaults pre-fill every new block and shortcode. You can override them per embed."
+msgstr ""
+
+#: admin/views/tab-setup.php:102
+msgid "Visitor / account default"
+msgstr ""
+
+#: admin/views/tab-setup.php:121
+msgid "Save settings"
+msgstr ""
+
+#: admin/views/tab-setup.php:126
+msgid "Embedding status on this site"
+msgstr ""
+
+#: admin/views/tab-setup.php:128
+msgid "Tymeslot blocks embedding by default. This live test loads your real booking page from this page, so it shows exactly what your visitors would see."
+msgstr ""
+
+#: admin/views/tab-setup.php:137
+#: includes/class-tymeslot-admin.php:107
+msgid "Checking…"
+msgstr ""
+
+#: admin/views/tab-setup.php:142
+msgid "Re-check"
+msgstr ""
+
+#: admin/views/tab-setup.php:149
+#: includes/class-tymeslot-assets.php:122
 msgid "Open Embed → Security"
 msgstr ""
 
+#: admin/views/tab-setup.php:153
+msgid "How to enable embedding on this domain"
+msgstr ""
+
+#. translators: %s: site host.
+#: admin/views/tab-setup.php:159
+#, php-format
+msgid "Copy this site’s domain: %s"
+msgstr ""
+
+#. translators: %s: link to the embed security settings.
+#: admin/views/tab-setup.php:168
+#, php-format
+msgid "In your Tymeslot dashboard open %s and add the domain."
+msgstr ""
+
+#: admin/views/tab-setup.php:169
+msgid "Embed → Security"
+msgstr ""
+
+#: admin/views/tab-setup.php:173
+msgid "Save, then press Re-check."
+msgstr ""
+
+#: admin/views/tab-setup.php:178
+msgid "Live test"
+msgstr ""
+
+#: includes/class-tymeslot-admin.php:54
+msgid "Settings"
+msgstr ""
+
+#: includes/class-tymeslot-admin.php:108
+msgid "Copied!"
+msgstr ""
+
+#: includes/class-tymeslot-admin.php:126
+msgid "Setup"
+msgstr ""
+
+#: includes/class-tymeslot-admin.php:128
+msgid "Help"
+msgstr ""
+
+#. translators: %s: settings page URL.
+#: includes/class-tymeslot-admin.php:166
+#, php-format
+msgid "<strong>Tymeslot</strong> is almost ready — <a href=\"%s\">add your booking username</a> to start embedding your scheduling page."
+msgstr ""
+
+#: includes/class-tymeslot-assets.php:118
+msgid "Loading booking page…"
+msgstr ""
+
+#: includes/class-tymeslot-assets.php:119
+msgid "Booking is currently unavailable. Please try again shortly."
+msgstr ""
+
+#: includes/class-tymeslot-assets.php:120
+msgid "The booking page could not be loaded."
+msgstr ""
+
+#: includes/class-tymeslot-assets.php:121
+msgid "This site isn’t allowed to embed your Tymeslot booking page yet. In your Tymeslot dashboard, open Embed → Security and add this site’s domain to the allowed embed domains."
+msgstr ""
+
+#: includes/class-tymeslot-settings.php:37
+msgid "Quill — elegant glassmorphism"
+msgstr ""
+
+#: includes/class-tymeslot-settings.php:38
+msgid "Rhythm — immersive video background"
+msgstr ""
+
+#: includes/class-tymeslot-settings.php:64
+msgid "Column — adapts to any container width"
+msgstr ""
+
+#: includes/class-tymeslot-settings.php:65
+msgid "Default — centred, self-contained card"
+msgstr ""
+
+#: includes/class-tymeslot-settings.php:76
+msgid "Inline"
+msgstr ""
+
+#: includes/class-tymeslot-settings.php:77
+msgid "Popup"
+msgstr ""
+
+#: includes/class-tymeslot-settings.php:78
+msgid "Floating button"
+msgstr ""
+
+#: includes/class-tymeslot-settings.php:79
+msgid "Direct link"
+msgstr ""
+
+#: includes/class-tymeslot-shortcode.php:84
+msgid "Tymeslot: add a username to this shortcode (or set a default in Settings → Tymeslot) to show your booking page."
+msgstr ""

@@ -217,7 +217,6 @@
 		var fields = {
 			username: document.getElementById( 'tymeslot-gen-username' ),
 			theme: document.getElementById( 'tymeslot-gen-theme' ),
-			primary_color: document.getElementById( 'tymeslot-gen-color' ),
 			locale: document.getElementById( 'tymeslot-gen-locale' ),
 			layout: document.getElementById( 'tymeslot-gen-layout' ),
 			initial_height: document.getElementById( 'tymeslot-gen-height' ),
@@ -334,7 +333,65 @@
 		refresh();
 	}
 
+	/* ----------------------------------------------------------------- *
+	 * Setup tab: Cloud vs Self-hosted chooser.
+	 * Cloud needs no input; Self-hosted reveals the instance URL field.
+	 * When Cloud is active the field is emptied so the server-side
+	 * sanitiser resolves it back to the tymeslot.app default on save.
+	 * ----------------------------------------------------------------- */
+	function initInstanceMode() {
+		var radios = document.querySelectorAll(
+			'input[name="tymeslot-instance-mode"]'
+		);
+		var field = document.getElementById( 'tymeslot-instance-field' );
+		var input = document.getElementById( 'tymeslot-instance' );
+		if ( ! radios.length || ! field || ! input ) {
+			return;
+		}
+
+		// Remember the last self-hosted URL so toggling Cloud → Self-hosted
+		// restores it instead of forcing the user to retype.
+		var lastSelf = input.value || '';
+
+		function apply( mode, focus ) {
+			var isSelf = mode === 'self';
+			field.hidden = ! isSelf;
+			radios.forEach( function ( radio ) {
+				var card = radio.closest( '.tymeslot-mode' );
+				if ( card ) {
+					card.classList.toggle( 'is-active', radio.value === mode );
+				}
+			} );
+			if ( isSelf ) {
+				input.value = lastSelf;
+				if ( focus ) {
+					input.focus();
+				}
+			} else {
+				if ( input.value ) {
+					lastSelf = input.value;
+				}
+				input.value = '';
+			}
+		}
+
+		radios.forEach( function ( radio ) {
+			radio.addEventListener( 'change', function () {
+				if ( radio.checked ) {
+					apply( radio.value, true );
+				}
+			} );
+		} );
+
+		input.addEventListener( 'input', function () {
+			if ( input.value ) {
+				lastSelf = input.value;
+			}
+		} );
+	}
+
 	document.addEventListener( 'DOMContentLoaded', function () {
+		initInstanceMode();
 		initEmbedStatus();
 		initGenerator();
 	} );

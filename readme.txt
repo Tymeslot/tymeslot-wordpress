@@ -29,7 +29,7 @@ Everything is driven by your real Tymeslot booking page, so availability, time z
 
 * **Open source** — self-host the whole platform, or use the managed cloud at tymeslot.app. This plugin works with both.
 * **Privacy-first** — your booking data stays in your Tymeslot account. The plugin stores only your settings.
-* **Beautiful booking themes** — choose Quill (elegant glassmorphism) or Rhythm (immersive video background), and set an accent colour to match your brand.
+* **Beautiful booking themes** — choose Quill (elegant glassmorphism) or Rhythm (immersive video background). The booker keeps the brand colours you set in your Tymeslot account.
 * **Auto-resizing** — the embedded booker grows and shrinks to fit its content, with no awkward scrollbars.
 * **Multilingual** — render the booker in English, German, Ukrainian, French, or Italian.
 
@@ -49,7 +49,7 @@ Tymeslot is not affiliated with Calendly or Cal.com.
 
 1. Install and activate the plugin.
 2. Go to **Tymeslot** in the WordPress admin menu.
-3. Enter your Tymeslot **instance URL** (use `https://tymeslot.app` for the cloud, or your own domain if you self-host) and your **booking username**.
+3. Choose **Cloud** (tymeslot.app — the default, nothing to configure) or **Self-hosted** (enter your own instance URL), then set your **booking username**.
 4. **Important:** Tymeslot blocks embedding by default. In your Tymeslot dashboard, open **Embed → Security** and add your WordPress site’s domain to the allowed embed domains. The Setup tab’s live embedding status then confirms, right in the browser, that it’s working.
 5. Add the **Tymeslot Booking** block to a page, or drop in the `[tymeslot]` shortcode.
 
@@ -67,7 +67,7 @@ No. Core scheduling on Tymeslot is free, and this plugin works with free and Pro
 
 = Does it work with a self-hosted Tymeslot instance? =
 
-Yes. Enter your own instance URL on the Setup tab. Everything else behaves the same as the cloud.
+Yes. On the Setup tab choose **Self-hosted** and enter your instance URL. Switch back to **Cloud** any time — everything else behaves the same.
 
 = Where is my booking data stored? =
 
@@ -75,11 +75,15 @@ In your Tymeslot account — never in WordPress. The plugin only stores your loc
 
 = Can I change the look of the booker? =
 
-Yes. Choose a theme (Quill or Rhythm), set a primary colour, pick a layout (column or centred), and a language. Set defaults once on the Setup tab, or override them per block/shortcode.
+Yes. Choose a theme (Quill or Rhythm), pick a layout (column or centred), and a language. Set defaults once on the Setup tab, or override them per block/shortcode. Your brand colour is set in your Tymeslot account and is applied to the booker automatically.
 
 = Does it slow down my site? =
 
 No. The lightweight embed runtime loads only on pages that actually contain a Tymeslot block or shortcode.
+
+= Does it work with a strict Content-Security-Policy? =
+
+The **inline** embed and the **direct link** work under a strict CSP — they only add a `<div>`/`<a>` plus an external script you already allow via `script-src`. The **popup** and **floating button** modes use a small inline `onclick`/`<script>` to open the booker, so they need `'unsafe-inline'` in your `script-src` (or a matching nonce/hash) to run. If you enforce a strict CSP without `'unsafe-inline'`, prefer the inline or link mode.
 
 == Screenshots ==
 
@@ -97,7 +101,7 @@ No. The lightweight embed runtime loads only on pages that actually contain a Ty
 * Live embedding check that loads your real booking page and shows whether this site is allow-listed.
 * Embed guard that shows a clear message instead of the Tymeslot homepage when a booking page can’t be embedded (inline, popup, and floating).
 * Support for self-hosted Tymeslot instances.
-* Themes (Quill, Rhythm), primary colour, layout, and language options.
+* Themes (Quill, Rhythm), layout, and language options.
 
 == Upgrade Notice ==
 

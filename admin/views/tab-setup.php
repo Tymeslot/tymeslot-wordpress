@@ -13,6 +13,11 @@ defined( 'ABSPATH' ) || exit;
 $themes  = Tymeslot_Settings::themes();
 $locales = Tymeslot_Settings::locales();
 $layouts = Tymeslot_Settings::layouts();
+
+// Cloud vs self-hosted is derived from the saved URL: the cloud default means
+// "Cloud", anything else means "Self-hosted". No separate flag is persisted.
+$instance_url = untrailingslashit( isset( $settings['instance_url'] ) ? $settings['instance_url'] : Tymeslot_Settings::DEFAULT_INSTANCE );
+$is_cloud     = ( Tymeslot_Settings::DEFAULT_INSTANCE === $instance_url );
 ?>
 
 <div class="tymeslot-grid">
@@ -26,16 +31,33 @@ $layouts = Tymeslot_Settings::layouts();
 			<?php settings_fields( Tymeslot_Settings::GROUP ); ?>
 
 			<div class="tymeslot-field">
-				<label for="tymeslot-instance"><?php esc_html_e( 'Tymeslot instance URL', 'tymeslot' ); ?></label>
+				<div class="tymeslot-modes" role="radiogroup" aria-label="<?php esc_attr_e( 'Tymeslot account location', 'tymeslot' ); ?>">
+					<label class="tymeslot-mode<?php echo $is_cloud ? ' is-active' : ''; ?>">
+						<input type="radio" name="tymeslot-instance-mode" value="cloud"<?php checked( $is_cloud ); ?> />
+						<span class="tymeslot-mode__badge"><?php esc_html_e( 'Default', 'tymeslot' ); ?></span>
+						<strong class="tymeslot-mode__title"><?php esc_html_e( 'Cloud', 'tymeslot' ); ?></strong>
+						<span class="tymeslot-mode__desc"><?php esc_html_e( 'Hosted at tymeslot.app — nothing to configure.', 'tymeslot' ); ?></span>
+					</label>
+					<label class="tymeslot-mode<?php echo $is_cloud ? '' : ' is-active'; ?>">
+						<input type="radio" name="tymeslot-instance-mode" value="self"<?php checked( ! $is_cloud ); ?> />
+						<span class="tymeslot-mode__badge"><?php esc_html_e( 'Custom', 'tymeslot' ); ?></span>
+						<strong class="tymeslot-mode__title"><?php esc_html_e( 'Self-hosted', 'tymeslot' ); ?></strong>
+						<span class="tymeslot-mode__desc"><?php esc_html_e( 'Connect to your own Tymeslot instance.', 'tymeslot' ); ?></span>
+					</label>
+				</div>
+			</div>
+
+			<div class="tymeslot-field" id="tymeslot-instance-field"<?php echo $is_cloud ? ' hidden' : ''; ?>>
+				<label for="tymeslot-instance"><?php esc_html_e( 'Your instance URL', 'tymeslot' ); ?></label>
 				<input
 					type="url"
 					id="tymeslot-instance"
 					name="tymeslot_settings[instance_url]"
 					class="regular-text"
-					value="<?php echo esc_attr( $settings['instance_url'] ); ?>"
-					placeholder="https://tymeslot.app"
+					value="<?php echo esc_attr( $is_cloud ? '' : $instance_url ); ?>"
+					placeholder="https://book.example.com"
 				/>
-				<p class="tymeslot-field__hint"><?php esc_html_e( 'No trailing slash. Self-hosters: enter your own domain.', 'tymeslot' ); ?></p>
+				<p class="tymeslot-field__hint"><?php esc_html_e( 'No trailing slash, e.g. https://book.example.com.', 'tymeslot' ); ?></p>
 			</div>
 
 			<div class="tymeslot-field">
@@ -82,19 +104,6 @@ $layouts = Tymeslot_Settings::layouts();
 							<option value="<?php echo esc_attr( $code ); ?>"<?php selected( $code, $settings['locale'] ); ?>><?php echo esc_html( $label ); ?></option>
 						<?php endforeach; ?>
 					</select>
-				</div>
-
-				<div class="tymeslot-field">
-					<label for="tymeslot-color"><?php esc_html_e( 'Primary colour', 'tymeslot' ); ?></label>
-					<input
-						type="text"
-						id="tymeslot-color"
-						name="tymeslot_settings[primary_color]"
-						class="regular-text"
-						value="<?php echo esc_attr( $settings['primary_color'] ); ?>"
-						placeholder="#14b8a6"
-					/>
-					<p class="tymeslot-field__hint"><?php esc_html_e( 'Hex colour, e.g. #14b8a6. Leave blank to use the theme default.', 'tymeslot' ); ?></p>
 				</div>
 
 				<div class="tymeslot-field tymeslot-field--inline">
