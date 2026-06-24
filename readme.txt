@@ -1,4 +1,4 @@
-=== Tymeslot — Booking & Scheduling ===
+=== Tymeslot ===
 Contributors: tymeslot
 Tags: booking, appointments, scheduling, calendar, meetings
 Requires at least: 6.4

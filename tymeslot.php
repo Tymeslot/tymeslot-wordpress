@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Tymeslot — Booking & Scheduling
+ * Plugin Name:       Tymeslot
  * Plugin URI:        https://tymeslot.app/docs/wordpress
  * Description:        Add your Tymeslot booking page to WordPress with a shortcode, a Gutenberg block, or a floating button — no code required. Works with Tymeslot Cloud and self-hosted instances.
  * Version:           1.0.0
