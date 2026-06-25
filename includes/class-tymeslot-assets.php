@@ -96,6 +96,27 @@ class Tymeslot_Assets {
 	}
 
 	/**
+	 * Attach init JS that must run after the embed runtime loads (used by the
+	 * floating-button mode on the live front end, in place of a raw inline
+	 * `<script>` tag). Prints after the enqueued `embed.js` in the footer; the
+	 * init itself polls for `window.TymeslotBooking`, so ordering is safe.
+	 *
+	 * @param string $js Inline JavaScript, without a surrounding `<script>` tag.
+	 * @return void
+	 */
+	public static function add_inline_runtime_js( $js ) {
+		if ( '' === $js ) {
+			return;
+		}
+
+		if ( ! wp_script_is( self::HANDLE, 'enqueued' ) ) {
+			self::enqueue();
+		}
+
+		wp_add_inline_script( self::HANDLE, $js, 'after' );
+	}
+
+	/**
 	 * Pass the guard its runtime configuration: the instance origin to trust
 	 * for embed messages, timing, the viewer's admin status (gating the
 	 * allow-list hint), and translatable copy.

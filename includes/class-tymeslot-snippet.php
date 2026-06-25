@@ -35,18 +35,70 @@ class Tymeslot_Snippet {
 	const DEFAULT_LINK_LABEL = 'Schedule a meeting';
 
 	/**
-	 * Render a snippet for the given mode from a raw argument map.
+	 * Render the full, copyable snippet for the given mode — the byte-identical
+	 * generator output, including the bundled `<script src="…/embed.js">` tag.
+	 *
+	 * This is what the admin generator / REST preview shows for copy-paste. The
+	 * live front end does NOT use this path: it renders through render_live(),
+	 * which omits the bundled tag because the runtime is enqueued properly. Keep
+	 * this output parity-locked to Core's `embed_code/2`.
 	 *
 	 * @param string              $mode One of inline|popup|floating|link.
 	 * @param array<string,mixed> $args Raw attributes (username, theme, ...).
 	 * @return string HTML snippet, or '' for an unknown/incomplete request.
 	 */
 	public static function render( $mode, array $args ) {
+		$parts = self::build( $mode, $args );
+
+		return ( null === $parts ) ? '' : $parts['snippet'];
+	}
+
+	/**
+	 * Render the live front-end pieces for the given mode: the visible markup
+	 * WITHOUT the bundled `<script src="…/embed.js">` tag, plus any inline init
+	 * JS that the facade must attach via wp_add_inline_script().
+	 *
+	 * The runtime is loaded via wp_enqueue_script() on the live path (see
+	 * class-tymeslot-assets.php), so echoing the tag here would both violate the
+	 * enqueue guideline and load embed.js twice. The generator keeps emitting
+	 * the full tag via render() — that output is copy-paste text, not a script
+	 * the plugin loads.
+	 *
+	 * @param string              $mode One of inline|popup|floating|link.
+	 * @param array<string,mixed> $args Raw attributes (username, theme, ...).
+	 * @return array{markup:string,inline_js:string}|null Pieces, or null when
+	 *                                                     the request is incomplete.
+	 */
+	public static function render_live( $mode, array $args ) {
+		$parts = self::build( $mode, $args );
+
+		if ( null === $parts ) {
+			return null;
+		}
+
+		return array(
+			'markup'    => $parts['markup'],
+			'inline_js' => $parts['inline_js'],
+		);
+	}
+
+	/**
+	 * Build every rendering of a mode in one place so the generator snippet and
+	 * the live markup can never drift.
+	 *
+	 * @param string              $mode One of inline|popup|floating|link.
+	 * @param array<string,mixed> $args Raw attributes (username, theme, ...).
+	 * @return array{snippet:string,markup:string,inline_js:string}|null
+	 *         `snippet` is the full copyable output; `markup` is the live markup
+	 *         without the bundled runtime tag; `inline_js` is any init JS to be
+	 *         enqueued on the live path. Null when the request is incomplete.
+	 */
+	private static function build( $mode, array $args ) {
 		$mode = Tymeslot_Settings::sanitize_mode( $mode );
 		$opts = self::normalize( $args );
 
 		if ( '' === $opts['username'] ) {
-			return '';
+			return null;
 		}
 
 		switch ( $mode ) {
@@ -94,7 +146,7 @@ class Tymeslot_Snippet {
 	 * Inline `<div>` embed (mirrors Core `embed_code("inline", ...)`).
 	 *
 	 * @param array<string,mixed> $o Normalised options.
-	 * @return string
+	 * @return array{snippet:string,markup:string,inline_js:string}
 	 */
 	private static function inline( $o ) {
 		$attrs = implode(
@@ -108,16 +160,21 @@ class Tymeslot_Snippet {
 			)
 		);
 
-		return "<!-- Tymeslot Inline -->\n"
-			. '<div id="tymeslot-booking" data-username="' . esc_attr( $o['username'] ) . '"' . $attrs . "></div>\n"
-			. '<script src="' . self::esc_src( $o['base_url'] ) . '/embed.js" async></script>';
+		$markup = "<!-- Tymeslot Inline -->\n"
+			. '<div id="tymeslot-booking" data-username="' . esc_attr( $o['username'] ) . '"' . $attrs . '></div>';
+
+		return array(
+			'snippet'   => $markup . "\n" . self::runtime_tag( $o ),
+			'markup'    => $markup,
+			'inline_js' => '',
+		);
 	}
 
 	/**
 	 * Popup button embed (mirrors Core `embed_code("popup", ...)`).
 	 *
 	 * @param array<string,mixed> $o Normalised options.
-	 * @return string
+	 * @return array{snippet:string,markup:string,inline_js:string}
 	 */
 	private static function popup( $o ) {
 		$js_options = self::build_js_options( $o );
@@ -130,30 +187,31 @@ class Tymeslot_Snippet {
 		// bracket or backslash can reach here. If Core's username format is ever
 		// loosened to allow ' " < or \, this becomes a stored-XSS vector and the
 		// value must be wrapped in esc_js(). The same invariant guards floating().
-		return "<!-- Tymeslot Popup -->\n"
+		$markup = "<!-- Tymeslot Popup -->\n"
 			. '<button onclick="if(window.TymeslotBooking){TymeslotBooking.open(\'' . $o['username'] . '\'' . $js_options . ")}else{alert('Booking system is currently unavailable.')}\">"
-			. esc_html( $label ) . "</button>\n"
-			. '<script src="' . self::esc_src( $o['base_url'] ) . '/embed.js" async></script>';
+			. esc_html( $label ) . '</button>';
+
+		return array(
+			'snippet'   => $markup . "\n" . self::runtime_tag( $o ),
+			'markup'    => $markup,
+			'inline_js' => '',
+		);
 	}
 
 	/**
 	 * Floating-button embed (mirrors Core `embed_code("floating", ...)`).
 	 *
 	 * @param array<string,mixed> $o Normalised options.
-	 * @return string
+	 * @return array{snippet:string,markup:string,inline_js:string}
 	 */
 	private static function floating( $o ) {
 		$js_options = self::build_js_options( $o );
-		$src        = self::esc_src( $o['base_url'] );
 
 		// SECURITY INVARIANT: see popup() — $o['username'] is interpolated raw
 		// into inline JS and is XSS-safe only while sanitize_username() forbids
 		// quotes, angle brackets and backslashes. Wrap in esc_js() if that ever
 		// changes.
-		return "<!-- Tymeslot Floating Button -->\n"
-			. '<script src="' . $src . "/embed.js\" async></script>\n"
-			. "<script>\n"
-			. "  (function() {\n"
+		$inline_js = "  (function() {\n"
 			. "    var init = function() {\n"
 			. "      if (window.TymeslotBooking) {\n"
 			. "        TymeslotBooking.initFloating('" . $o['username'] . "'" . $js_options . ");\n"
@@ -162,21 +220,54 @@ class Tymeslot_Snippet {
 			. "      }\n"
 			. "    };\n"
 			. "    init();\n"
-			. "  })();\n"
-			. '</script>';
+			. "  })();\n";
+
+		// The live path emits only this comment as visible markup; the runtime is
+		// enqueued and $inline_js is attached via wp_add_inline_script().
+		$markup = '<!-- Tymeslot Floating Button -->';
+
+		$snippet = $markup . "\n"
+			. self::runtime_tag( $o ) . "\n"
+			. "<script>\n" . $inline_js . '</script>';
+
+		return array(
+			'snippet'   => $snippet,
+			'markup'    => $markup,
+			'inline_js' => $inline_js,
+		);
 	}
 
 	/**
 	 * Direct-link embed (mirrors Core `embed_code("link", ...)`).
 	 *
 	 * @param array<string,mixed> $o Normalised options.
-	 * @return string
+	 * @return array{snippet:string,markup:string,inline_js:string}
 	 */
 	private static function link( $o ) {
 		$query = ( 'column' === self::layout_override( $o['layout'] ) ) ? '?layout=column' : '';
 		$label = '' !== $o['label'] ? $o['label'] : self::DEFAULT_LINK_LABEL;
 
-		return '<a href="' . self::esc_src( $o['booking_url'] ) . $query . '">' . esc_html( $label ) . '</a>';
+		$markup = '<a href="' . self::esc_src( $o['booking_url'] ) . $query . '">' . esc_html( $label ) . '</a>';
+
+		// A plain anchor needs no runtime, so every rendering is identical.
+		return array(
+			'snippet'   => $markup,
+			'markup'    => $markup,
+			'inline_js' => '',
+		);
+	}
+
+	/**
+	 * The bundled `<script src="…/embed.js" async></script>` tag used in the
+	 * copyable generator snippet. The live path never emits this — it enqueues
+	 * the runtime instead — so this string only ever reaches output as copy-paste
+	 * text, where the enqueue guideline does not apply.
+	 *
+	 * @param array<string,mixed> $o Normalised options.
+	 * @return string
+	 */
+	private static function runtime_tag( $o ) {
+		return '<script src="' . self::esc_src( $o['base_url'] ) . '/embed.js" async></script>';
 	}
 
 	/**

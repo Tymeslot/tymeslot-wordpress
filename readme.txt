@@ -1,5 +1,5 @@
 === Tymeslot ===
-Contributors: tymeslot
+Contributors: luka113
 Tags: booking, appointments, scheduling, calendar, meetings
 Requires at least: 6.4
 Tested up to: 7.0

@@ -26,18 +26,27 @@ class Tymeslot_Embed {
 	 * @return string The snippet, or '' when it can't be built (no username).
 	 */
 	public static function render( $mode, array $args ) {
-		$mode    = Tymeslot_Settings::sanitize_mode( $mode );
-		$snippet = Tymeslot_Snippet::render( $mode, $args );
+		$mode = Tymeslot_Settings::sanitize_mode( $mode );
+		$live = Tymeslot_Snippet::render_live( $mode, $args );
 
-		if ( '' === $snippet ) {
+		if ( null === $live ) {
 			return '';
 		}
 
+		// The live path loads embed.js the WordPress way (wp_enqueue_script) and
+		// attaches any init JS via wp_add_inline_script — never a raw <script>
+		// tag in the markup. The copyable generator snippet still carries the tag
+		// (see Tymeslot_Snippet::render); that output is paste text, not loaded
+		// by the plugin.
 		if ( self::needs_runtime( $mode ) ) {
 			Tymeslot_Assets::enqueue();
+
+			if ( '' !== $live['inline_js'] ) {
+				Tymeslot_Assets::add_inline_runtime_js( $live['inline_js'] );
+			}
 		}
 
-		return $snippet;
+		return $live['markup'];
 	}
 
 	/**
