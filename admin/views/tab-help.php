@@ -9,6 +9,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// Template partial required into Tymeslot_Admin::render_page(); its variables
+// are function-local, not globals, so the global-prefix rule does not apply.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $docs = Tymeslot_Settings::instance_url() . '/docs/embed';
 ?>
 

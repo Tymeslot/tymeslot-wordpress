@@ -10,6 +10,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// Template partial required into Tymeslot_Admin::render_page(); its variables
+// are function-local, not globals, so the global-prefix rule does not apply.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $modes   = Tymeslot_Settings::modes();
 $themes  = Tymeslot_Settings::themes();
 $locales = Tymeslot_Settings::locales();
