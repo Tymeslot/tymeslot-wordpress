@@ -65,4 +65,6 @@ Branded SVG masters live in `.wordpress-org/`. Regenerate the wordpress.org PNGs
 
 ## License
 
-GPL-2.0-or-later. Tymeslot is open source.
+This plugin is licensed **GPL-2.0-or-later** (as required for the WordPress.org Plugin Directory) — see `LICENSE`.
+
+The Tymeslot platform itself — the Core Elixir/Phoenix application this plugin embeds — is licensed **AGPL-3.0**. The plugin and Core are independent programs: the plugin only embeds a Core booking page in an iframe (no code linking), so the two licences apply separately and there's no conflict with the plugin's GPL-2.0-or-later terms.
