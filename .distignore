@@ -29,5 +29,6 @@ vendor/
 .git/
 .github/
 
-# Local screenshot scratch (already gitignored; excluded here belt-and-braces)
+# Local test env + screenshot scratch (already gitignored; excluded here belt-and-braces)
 .shots/
+.wp-env.override.json
